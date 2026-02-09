@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-brand-charcoal text-brand-cream overflow-x-hidden;
+  }
+
+  ::selection {
+    @apply bg-brand-cyan/30 text-white;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-cyan;
+  }
+}
+
+@layer components {
+  .section-dark {
+    @apply bg-brand-charcoal text-brand-cream;
+  }
+
+  .section-light {
+    @apply bg-brand-cream text-brand-charcoal;
+  }
+
+  .section-navy {
+    @apply bg-brand-dark text-brand-cream;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-brand-cyan to-brand-mauve bg-clip-text text-transparent;
+  }
+
+  .glow-cyan {
+    box-shadow: 0 0 40px rgba(91, 192, 190, 0.15);
+  }
+
+  .glow-mauve {
+    box-shadow: 0 0 40px rgba(157, 142, 199, 0.15);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Hexagonal clip-path for honeycomb layout */
+.clip-hex {
+  clip-path: polygon(
+    25% 6%,
+    75% 6%,
+    100% 50%,
+    75% 94%,
+    25% 94%,
+    0% 50%
+  );
+}
