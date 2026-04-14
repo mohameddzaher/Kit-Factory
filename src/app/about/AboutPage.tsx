@@ -14,43 +14,25 @@ import {
 import Container from '@/components/ui/Container';
 import SectionHeading from '@/components/ui/SectionHeading';
 import PageWrapper from '@/components/layout/PageWrapper';
+import ManagementMessage from '@/components/shared/ManagementMessage';
+import { useLocale } from '@/lib/i18n/LocaleProvider';
 
-const values = [
-  {
-    icon: Target,
-    title: 'Innovation',
-    description: 'We provide the most innovative and feasible solutions our customers dream of.',
-  },
-  {
-    icon: Compass,
-    title: 'Exploration',
-    description: 'We embark on adventurous quests exploring boundless horizons of creativity.',
-  },
-  {
-    icon: Award,
-    title: 'Excellence',
-    description: 'We weave a tapestry of the finest, most pioneering, realizable solutions.',
-  },
-  {
-    icon: Handshake,
-    title: 'Partnership',
-    description: 'We work hand-in-hand with clients to deliver results that exceed expectations.',
-  },
-];
-
-const milestones = [
-  { year: '2006', title: 'Kit Display Dubai Founded', description: 'Our parent company Kit Display established in Dubai, building the foundation of expertise.' },
-  { year: '2018', title: 'Kit Factory Launched', description: 'Founded in Jeddah to revolutionize the Middle East advertising landscape.' },
-  { year: '2020', title: 'GCC Expansion', description: 'Expanded operations across Saudi Arabia reaching major cities and regions.' },
-  { year: '2022', title: '33 Cities Covered', description: 'Achieved nationwide coverage with offices and operations in 33+ cities across KSA.' },
-  { year: '2024', title: 'Regional Leadership', description: 'Recognized as a premier indoor & outdoor production house across the GCC.' },
-];
+const valueIcons = [Target, Compass, Award, Handshake] as const;
 
 export default function AboutPage() {
+  const { t, dir } = useLocale();
+  const p = t.pages.about;
+
+  const valueKeys = ['innovation', 'exploration', 'excellence', 'partnership'] as const;
+  const values = valueKeys.map((k, i) => ({
+    icon: valueIcons[i],
+    ...p.values[k],
+  }));
+
   return (
     <PageWrapper>
       {/* Hero */}
-      <section className="section-dark py-16 md:py-24">
+      <section dir={dir} className="section-dark py-16 md:py-24">
         <Container>
           <div className="mx-auto max-w-3xl text-center">
             <motion.div
@@ -58,24 +40,24 @@ export default function AboutPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <span className="mb-2 inline-block text-xs font-semibold uppercase tracking-[0.2em] text-brand-cyan">
-                About Us
+              <span className="mb-2 inline-block text-xs font-semibold uppercase tracking-[0.2em] text-kf-blue">
+                {p.eyebrow}
               </span>
               <h1 className="font-display text-3xl font-bold text-brand-cream sm:text-4xl">
-                Forging Tomorrow&apos;s Vision
+                {p.heroTitle}
               </h1>
-              <p className="mt-4 text-sm leading-relaxed text-justify text-brand-muted">
-                Founded in 2018 to revolutionize the Middle East advertising landscape,
-                Kit Factory is a premier indoor and outdoor production house delivering
-                end-to-end solutions from Jeddah and Dubai across the entire GCC.
+              <p className="mt-4 text-sm leading-relaxed text-brand-muted">
+                {p.heroDescription}
               </p>
             </motion.div>
           </div>
         </Container>
       </section>
 
+      <ManagementMessage variant="light" />
+
       {/* Vision & Mission */}
-      <section className="section-light py-16 md:py-20">
+      <section dir={dir} className="section-light py-16 md:py-20">
         <Container>
           <div className="grid gap-8 md:grid-cols-2">
             <motion.div
@@ -85,15 +67,14 @@ export default function AboutPage() {
               transition={{ duration: 0.4 }}
               className="rounded-xl border border-brand-charcoal/[0.06] bg-white p-6"
             >
-              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-brand-cyan/10">
-                <Eye className="h-5 w-5 text-brand-cyan" />
+              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-kf-blue/10">
+                <Eye className="h-5 w-5 text-kf-blue" />
               </div>
               <h2 className="font-display text-lg font-bold text-brand-charcoal">
-                Our Vision
+                {p.visionTitle}
               </h2>
-              <p className="mt-2 text-sm leading-relaxed text-justify text-brand-charcoal/70">
-                Our vision is to forge our destiny from the untapped potential of
-                tomorrow, rather than being bound by the limitations of yesterday.
+              <p className="mt-2 text-sm leading-relaxed text-brand-charcoal/70">
+                {p.visionBody}
               </p>
             </motion.div>
 
@@ -104,25 +85,21 @@ export default function AboutPage() {
               transition={{ duration: 0.4, delay: 0.08 }}
               className="rounded-xl border border-brand-charcoal/[0.06] bg-white p-6"
             >
-              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-brand-mauve/10">
-                <Target className="h-5 w-5 text-brand-mauve" />
+              <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-kf-magenta/10">
+                <Target className="h-5 w-5 text-kf-magenta" />
               </div>
               <h2 className="font-display text-lg font-bold text-brand-charcoal">
-                Our Mission
+                {p.missionTitle}
               </h2>
               <ul className="mt-2 space-y-2">
-                <li className="flex items-start gap-2 text-sm text-brand-charcoal/70">
-                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-cyan" />
-                  Provide customers with the best, most innovative, and feasible solutions they dream of.
-                </li>
-                <li className="flex items-start gap-2 text-sm text-brand-charcoal/70">
-                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-mauve" />
-                  Embark on an adventurous quest exploring boundless horizons of creativity.
-                </li>
-                <li className="flex items-start gap-2 text-sm text-brand-charcoal/70">
-                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-cyan" />
-                  Weave a tapestry of the finest, most pioneering, realizable solutions under one roof.
-                </li>
+                {p.missionBullets.map((bullet, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm text-brand-charcoal/70">
+                    <span
+                      className={`mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full ${i % 2 === 0 ? 'bg-kf-blue' : 'bg-kf-magenta'}`}
+                    />
+                    {bullet}
+                  </li>
+                ))}
               </ul>
             </motion.div>
           </div>
@@ -130,12 +107,12 @@ export default function AboutPage() {
       </section>
 
       {/* Who We Are */}
-      <section className="section-dark py-16 md:py-20">
+      <section dir={dir} className="section-dark py-16 md:py-20">
         <Container>
           <SectionHeading
-            label="Who We Are"
-            title="A Legacy of Creative Excellence"
-            description="From our roots in Dubai to our headquarters in Jeddah, we have built a reputation for delivering exceptional advertising and production solutions."
+            label={p.whoWeAreLabel}
+            title={p.whoWeAreTitle}
+            description={p.whoWeAreDescription}
           />
 
           <div className="grid gap-6 md:grid-cols-2">
@@ -144,48 +121,29 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.4 }}
-              className="space-y-4 text-sm leading-relaxed text-justify text-brand-muted"
+              className="space-y-4 text-sm leading-relaxed text-brand-muted"
             >
-              <p>
-                Kit Factory was founded in 2018 with a bold ambition: to revolutionize
-                the Middle East advertising landscape. Through our strategic partnership
-                with Kit Display Dubai, established in 2006, we amplify our presence and
-                expertise across the region.
-              </p>
-              <p>
-                With branches in Jeddah and Dubai, we operate as a premier indoor and
-                outdoor production house across the GCC, handling projects of any size
-                with strong attention to detail.
-              </p>
+              <p>{p.whoBody1}</p>
+              <p>{p.whoBody2}</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.4, delay: 0.08 }}
-              className="space-y-4 text-sm leading-relaxed text-justify text-brand-muted"
+              className="space-y-4 text-sm leading-relaxed text-brand-muted"
             >
-              <p>
-                From concept to delivery, we provide full advertising operations and
-                marketing services, supported by advanced digital printing, graphic
-                imaging machines, workshops, and a highly skilled team.
-              </p>
-              <p>
-                Our in-house facilities include CNC and laser equipment for precision,
-                with printing capabilities spanning water-based, pigment, latex, solvent,
-                and UV technologies across machines from HP Latex, Roland, Mutoh, Vutek,
-                Canon, and Flora.
-              </p>
+              <p>{p.whoBody3}</p>
+              <p>{p.whoBody4}</p>
             </motion.div>
           </div>
 
-          {/* Key figures */}
           <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4">
             {[
-              { icon: Building2, value: '2', label: 'Offices' },
-              { icon: Globe, value: '33+', label: 'Cities' },
-              { icon: Users, value: '100+', label: 'Team Members' },
-              { icon: Award, value: '1000+', label: 'Projects' },
+              { icon: Building2, value: '2', label: p.figures.offices },
+              { icon: Globe, value: '33+', label: p.figures.cities },
+              { icon: Users, value: '100+', label: p.figures.team },
+              { icon: Award, value: '1000+', label: p.figures.projects },
             ].map((stat, i) => (
               <motion.div
                 key={stat.label}
@@ -195,7 +153,7 @@ export default function AboutPage() {
                 transition={{ duration: 0.4, delay: i * 0.06 }}
                 className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-4 text-center"
               >
-                <stat.icon className="mx-auto mb-2 h-4 w-4 text-brand-cyan" />
+                <stat.icon className="mx-auto mb-2 h-4 w-4 text-kf-blue" />
                 <p className="font-display text-xl font-bold text-brand-cream">
                   {stat.value}
                 </p>
@@ -207,11 +165,11 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="section-light py-16 md:py-20">
+      <section dir={dir} className="section-light py-16 md:py-20">
         <Container>
           <SectionHeading
-            label="Core Values"
-            title="What Drives Us"
+            label={p.valuesLabel}
+            title={p.valuesTitle}
             dark={false}
           />
 
@@ -241,33 +199,26 @@ export default function AboutPage() {
       </section>
 
       {/* Timeline */}
-      <section className="section-dark py-16 md:py-20">
+      <section dir={dir} className="section-dark py-16 md:py-20">
         <Container>
-          <SectionHeading
-            label="Our Journey"
-            title="Milestones"
-          />
+          <SectionHeading label={p.journeyLabel} title={p.journeyTitle} />
 
           <div className="mx-auto max-w-2xl space-y-0">
-            {milestones.map((milestone, i) => (
+            {p.milestones.map((m, i) => (
               <motion.div
-                key={milestone.year}
+                key={m.year}
                 initial={{ opacity: 0, x: -12 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ duration: 0.4, delay: i * 0.06 }}
-                className="relative border-l border-brand-cyan/20 py-4 pl-6"
+                className="relative border-l border-kf-blue/25 py-4 pl-6"
               >
-                <div className="absolute -left-[5px] top-5 h-2.5 w-2.5 rounded-full border-2 border-brand-cyan bg-brand-charcoal" />
-                <span className="text-xs font-semibold text-brand-cyan">
-                  {milestone.year}
-                </span>
+                <div className="absolute -left-[5px] top-5 h-2.5 w-2.5 rounded-full border-2 border-kf-blue bg-brand-charcoal" />
+                <span className="text-xs font-semibold text-kf-blue">{m.year}</span>
                 <h3 className="mt-0.5 text-sm font-semibold text-brand-cream">
-                  {milestone.title}
+                  {m.title}
                 </h3>
-                <p className="mt-0.5 text-xs text-brand-muted">
-                  {milestone.description}
-                </p>
+                <p className="mt-0.5 text-xs text-brand-muted">{m.description}</p>
               </motion.div>
             ))}
           </div>

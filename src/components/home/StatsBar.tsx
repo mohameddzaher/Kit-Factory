@@ -3,15 +3,18 @@
 import { motion } from 'framer-motion';
 import { Calendar, MapPin, Building2, Globe } from 'lucide-react';
 import Container from '@/components/ui/Container';
-
-const stats = [
-  { icon: Calendar, value: '2018', label: 'Founded', suffix: '' },
-  { icon: MapPin, value: '33', label: 'Cities Covered', suffix: '+' },
-  { icon: Building2, value: '2', label: 'Jeddah & Dubai', suffix: ' Offices' },
-  { icon: Globe, value: 'GCC', label: 'Regional Reach', suffix: '-Wide' },
-];
+import { useLocale } from '@/lib/i18n/LocaleProvider';
 
 export default function StatsBar() {
+  const { t } = useLocale();
+
+  const stats = [
+    { icon: Calendar, value: '2018', label: t.stats.founded, suffix: '' },
+    { icon: MapPin, value: '33', label: t.stats.citiesCovered, suffix: '+' },
+    { icon: Building2, value: '2', label: t.stats.officesLabel, suffix: ' ' + t.stats.offices },
+    { icon: Globe, value: t.stats.reach, label: t.stats.reachLabel, suffix: '' },
+  ];
+
   return (
     <section className="relative border-y border-white/[0.06] bg-brand-dark py-10">
       <Container>
@@ -25,10 +28,10 @@ export default function StatsBar() {
               transition={{ duration: 0.4, delay: i * 0.06 }}
               className="flex flex-col items-center text-center"
             >
-              <stat.icon className="mb-2 h-4 w-4 text-brand-cyan" />
+              <stat.icon className="mb-2 h-4 w-4 text-kf-blue" />
               <span className="font-display text-xl font-bold text-brand-cream sm:text-2xl">
                 {stat.value}
-                <span className="text-brand-cyan">{stat.suffix}</span>
+                <span className="text-kf-blue">{stat.suffix}</span>
               </span>
               <span className="mt-0.5 text-2xs text-brand-muted">{stat.label}</span>
             </motion.div>

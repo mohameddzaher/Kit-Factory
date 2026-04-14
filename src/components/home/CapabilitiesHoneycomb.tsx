@@ -12,44 +12,22 @@ import {
 import Container from '@/components/ui/Container';
 import SectionHeading from '@/components/ui/SectionHeading';
 import { cn } from '@/lib/utils';
+import { useLocale } from '@/lib/i18n/LocaleProvider';
 
-const capabilities = [
-  {
-    icon: Cpu,
-    title: 'CNC & Laser Precision',
-    gradient: 'from-brand-charcoal via-brand-dark to-brand-navy',
-    accent: 'cyan' as const,
-  },
-  {
-    icon: Printer,
-    title: 'Advanced Printing Lab',
-    gradient: 'from-brand-dark via-brand-charcoal to-brand-dark',
-    accent: 'mauve' as const,
-  },
-  {
-    icon: Paintbrush,
-    title: 'Paint Booths & Finishing',
-    gradient: 'from-brand-navy via-brand-dark to-brand-charcoal',
-    accent: 'cyan' as const,
-  },
-  {
-    icon: Factory,
-    title: 'Large-Scale Fabrication',
-    gradient: 'from-brand-charcoal via-brand-navy to-brand-dark',
-    accent: 'mauve' as const,
-  },
-  {
-    icon: ShieldCheck,
-    title: 'Quality Testing & Prototyping',
-    gradient: 'from-brand-dark via-brand-navy to-brand-charcoal',
-    accent: 'cyan' as const,
-  },
-  {
-    icon: Truck,
-    title: 'Installation & Delivery',
-    gradient: 'from-brand-navy via-brand-charcoal to-brand-dark',
-    accent: 'mauve' as const,
-  },
+type Accent = 'cyan' | 'mauve';
+
+const capabilityConfigs: {
+  icon: typeof Cpu;
+  itemKey: 'cnc' | 'printing' | 'paint' | 'fabrication' | 'testing' | 'installation';
+  gradient: string;
+  accent: Accent;
+}[] = [
+  { icon: Cpu, itemKey: 'cnc', gradient: 'from-brand-charcoal via-brand-dark to-brand-navy', accent: 'cyan' },
+  { icon: Printer, itemKey: 'printing', gradient: 'from-brand-dark via-brand-charcoal to-brand-dark', accent: 'mauve' },
+  { icon: Paintbrush, itemKey: 'paint', gradient: 'from-brand-navy via-brand-dark to-brand-charcoal', accent: 'cyan' },
+  { icon: Factory, itemKey: 'fabrication', gradient: 'from-brand-charcoal via-brand-navy to-brand-dark', accent: 'mauve' },
+  { icon: ShieldCheck, itemKey: 'testing', gradient: 'from-brand-dark via-brand-navy to-brand-charcoal', accent: 'cyan' },
+  { icon: Truck, itemKey: 'installation', gradient: 'from-brand-navy via-brand-charcoal to-brand-dark', accent: 'mauve' },
 ];
 
 /* ── Accent style maps (explicit classes so Tailwind can detect them) ── */
@@ -87,7 +65,15 @@ function HexTile({
   gradient,
   accent,
   index,
-}: (typeof capabilities)[0] & { index: number }) {
+  learnMore,
+}: {
+  icon: typeof Cpu;
+  title: string;
+  gradient: string;
+  accent: Accent;
+  index: number;
+  learnMore: string;
+}) {
   const s = accentStyles[accent];
 
   return (
@@ -146,7 +132,7 @@ function HexTile({
               s.btnBorderGroupHover
             )}
           >
-            Learn More
+            {learnMore}
           </button>
         </div>
       </div>
@@ -169,13 +155,19 @@ const hexPositions: { left: string; top: string }[] = [
 ];
 
 export default function CapabilitiesHoneycomb() {
+  const { t } = useLocale();
+  const capabilities = capabilityConfigs.map((c) => ({
+    ...c,
+    title: t.capabilities.items[c.itemKey],
+  }));
+
   return (
     <section className="section-light py-16 md:py-20 overflow-hidden">
       <Container>
         <SectionHeading
-          label="Craftsmanship"
-          title="Production & Capabilities"
-          description="State-of-the-art facilities and machinery powering every project we deliver."
+          label={t.capabilities.label}
+          title={t.capabilities.title}
+          description={t.capabilities.description}
           dark={false}
         />
 
@@ -195,7 +187,7 @@ export default function CapabilitiesHoneycomb() {
           >
             {capabilities.map((cap, i) => (
               <div
-                key={cap.title}
+                key={cap.itemKey}
                 className="absolute"
                 style={{
                   width: 'var(--hexW)',
@@ -203,17 +195,16 @@ export default function CapabilitiesHoneycomb() {
                   top: hexPositions[i].top,
                 }}
               >
-                <HexTile {...cap} index={i} />
+                <HexTile {...cap} index={i} learnMore={t.capabilities.learnMore} />
               </div>
             ))}
           </div>
         </div>
 
-        {/* ── Mobile: stacked single column, no overlap ── */}
         <div className="md:hidden">
           <div className="mx-auto flex max-w-[200px] flex-col gap-3">
             {capabilities.map((cap, i) => (
-              <HexTile key={cap.title} {...cap} index={i} />
+              <HexTile key={cap.itemKey} {...cap} index={i} learnMore={t.capabilities.learnMore} />
             ))}
           </div>
         </div>

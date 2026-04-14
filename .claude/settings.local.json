@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git init:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run build:*)",
+      "Bash(npx next build:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(git -C /Users/mohamedzaher/Desktop/kit-factory-website add .gitignore .eslintrc.json README.md netlify.toml next.config.js package.json package-lock.json postcss.config.js tailwind.config.ts tsconfig.json src/ public/brand/ public/og-image.jpg)",
+      "Bash(git -C /Users/mohamedzaher/Desktop/kit-factory-website status)",
+      "Bash(git -C /Users/mohamedzaher/Desktop/kit-factory-website commit -m \"$\\(cat <<''EOF''\nInitial release: Kit Factory production website\n\nComplete Next.js 14 marketing website for Kit Factory - a premier indoor/outdoor\nproduction house in Saudi Arabia. Features include:\n\n- 8 main pages \\(Home, About, Services, Projects, Coverage, Clients, Contact, Team\\)\n- 16 dynamic service detail pages with SSG\n- 6 dynamic project detail pages with SSG\n- Framer Motion animations throughout\n- Full SEO setup \\(meta tags, OG, JSON-LD, sitemap, robots\\)\n- Netlify deployment configuration\n- Responsive design with Tailwind CSS\n- Real Unsplash images for all project/service content\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git -C /Users/mohamedzaher/Desktop/kit-factory-website branch:*)",
+      "Bash(git -C /Users/mohamedzaher/Desktop/kit-factory-website remote add origin https://github.com/mohameddzaher/Kit-Factory.git)",
+      "Bash(git -C /Users/mohamedzaher/Desktop/kit-factory-website ls-remote origin)",
+      "Bash(git -C /Users/mohamedzaher/Desktop/kit-factory-website push -u origin main)"
+    ]
+  }
+}

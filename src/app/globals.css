@@ -13,12 +13,17 @@
     @apply bg-brand-charcoal text-brand-cream overflow-x-hidden;
   }
 
+  html[dir='rtl'] body {
+    font-family: var(--font-cairo), system-ui, sans-serif;
+  }
+
   ::selection {
-    @apply bg-brand-cyan/30 text-white;
+    @apply bg-kf-blue/30 text-white;
   }
 
   :focus-visible {
-    @apply outline-2 outline-offset-2 outline-brand-cyan;
+    @apply outline-2 outline-offset-2;
+    outline-color: #00AEEF;
   }
 }
 
@@ -35,22 +40,68 @@
     @apply bg-brand-dark text-brand-cream;
   }
 
+  /* Soft fade transitions between adjacent sections — avoids hard color cuts. */
+  .section-dark + .section-light,
+  .section-light + .section-dark,
+  .section-dark + .section-navy,
+  .section-navy + .section-dark,
+  .section-light + .section-navy,
+  .section-navy + .section-light {
+    position: relative;
+  }
+  .section-dark + .section-light::before,
+  .section-navy + .section-light::before {
+    content: '';
+    position: absolute;
+    inset: -60px 0 auto 0;
+    height: 120px;
+    background: linear-gradient(180deg, #0f1115 0%, rgba(15, 17, 21, 0) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .section-light + .section-dark::before,
+  .section-light + .section-navy::before {
+    content: '';
+    position: absolute;
+    inset: -60px 0 auto 0;
+    height: 120px;
+    background: linear-gradient(180deg, #f6f7f8 0%, rgba(246, 247, 248, 0) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
   .gradient-text {
-    @apply bg-gradient-to-r from-brand-cyan to-brand-mauve bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-kf-blue via-kf-green to-kf-yellow bg-clip-text text-transparent;
+  }
+
+  .gradient-text-warm {
+    @apply bg-gradient-to-r from-kf-yellow via-kf-red to-kf-magenta bg-clip-text text-transparent;
   }
 
   .glow-cyan {
-    box-shadow: 0 0 40px rgba(91, 192, 190, 0.15);
+    box-shadow: 0 0 40px rgba(0, 174, 239, 0.18);
   }
 
   .glow-mauve {
-    box-shadow: 0 0 40px rgba(157, 142, 199, 0.15);
+    box-shadow: 0 0 40px rgba(204, 0, 204, 0.15);
+  }
+
+  .kf-accent-bar {
+    background: #00AEEF;
   }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* RTL-safe logical spacing helpers */
+  .rtl-flip {
+    transform: scaleX(1);
+  }
+  html[dir='rtl'] .rtl-flip {
+    transform: scaleX(-1);
   }
 }
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
+import SafeImage from '@/components/ui/SafeImage';
 import Link from 'next/link';
 import { ArrowLeft, Calendar, Tag, Users } from 'lucide-react';
 import Container from '@/components/ui/Container';
@@ -74,7 +74,7 @@ export default function ProjectDetail({ project }: { project: Project }) {
                   i === 0 ? 'md:col-span-2 aspect-[16/9]' : 'aspect-[4/3]'
                 }`}
               >
-                <Image
+                <SafeImage
                   src={image}
                   alt={`${project.title} — Image ${i + 1}`}
                   fill

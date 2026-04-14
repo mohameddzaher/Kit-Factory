@@ -5,33 +5,36 @@ import Image from 'next/image';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import SocialLinks from '@/components/shared/SocialLinks';
-import { NAV_ITEMS, CONTACT_INFO, SITE_CONFIG } from '@/lib/constants';
-
-const footerLinks = {
-  company: [
-    { label: 'About Us', href: '/about' },
-    { label: 'Coverage', href: '/coverage' },
-    { label: 'Clients', href: '/clients' },
-  ],
-  services: [
-    { label: 'Signage', href: '/services' },
-    { label: 'Exhibition Stands', href: '/services' },
-    { label: 'Vehicle Branding', href: '/services' },
-    { label: 'All Services', href: '/services' },
-  ],
-  resources: [
-    { label: 'Projects', href: '/projects' },
-    { label: 'Contact', href: '/contact' },
-    { label: 'Get a Quote', href: '/contact' },
-  ],
-};
+import { CONTACT_INFO, SITE_CONFIG } from '@/lib/constants';
+import { useLocale } from '@/lib/i18n/LocaleProvider';
 
 export default function Footer() {
+  const { t, dir } = useLocale();
+
+  const footerLinks = {
+    company: [
+      { label: t.nav.about, href: '/about' },
+      { label: t.nav.coverage, href: '/coverage' },
+      { label: t.nav.clients, href: '/clients' },
+    ],
+    services: [
+      { label: t.nav.services, href: '/services' },
+      { label: t.nav.projects, href: '/projects' },
+      { label: t.nav.coverage, href: '/coverage' },
+    ],
+    resources: [
+      { label: t.nav.projects, href: '/projects' },
+      { label: t.nav.coverage, href: '/coverage' },
+      { label: t.nav.contact, href: '/contact' },
+      { label: t.nav.getQuote, href: '/contact' },
+    ],
+  };
+
   return (
-    <footer className="border-t border-white/[0.06] bg-brand-dark">
+    <footer dir={dir} className="relative border-t border-white/[0.06] bg-brand-dark">
+      <div className="kf-accent-bar absolute inset-x-0 top-0 h-0.5 opacity-80" />
       <Container className="py-12 md:py-16">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
-          {/* Brand Column */}
           <div className="lg:col-span-2">
             <Link href="/" aria-label="Kit Factory Home">
               <Image
@@ -42,24 +45,22 @@ export default function Footer() {
                 className="h-8 w-auto"
               />
             </Link>
-            <p className="mt-4 max-w-xs text-xs leading-relaxed text-justify text-brand-muted">
-              Premier indoor & outdoor production house across the GCC. From
-              concept to delivery, we bring imagination to life.
+            <p className="mt-4 max-w-xs text-xs leading-relaxed text-brand-muted">
+              {t.footer.tagline}
             </p>
             <SocialLinks size="sm" className="mt-5" />
           </div>
 
-          {/* Company */}
           <div>
             <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-brand-cream">
-              Company
+              {t.footer.company}
             </h3>
             <ul className="space-y-2">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-xs text-brand-muted transition-colors hover:text-brand-cyan"
+                    className="text-xs text-brand-muted transition-colors hover:text-kf-blue"
                   >
                     {link.label}
                   </Link>
@@ -68,17 +69,16 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Services */}
           <div>
             <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-brand-cream">
-              Services
+              {t.footer.services}
             </h3>
             <ul className="space-y-2">
               {footerLinks.services.map((link, i) => (
                 <li key={`${link.label}-${i}`}>
                   <Link
                     href={link.href}
-                    className="text-xs text-brand-muted transition-colors hover:text-brand-cyan"
+                    className="text-xs text-brand-muted transition-colors hover:text-kf-blue"
                   >
                     {link.label}
                   </Link>
@@ -87,16 +87,15 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
             <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-brand-cream">
-              Contact
+              {t.footer.contact}
             </h3>
             <ul className="space-y-3">
               <li>
                 <a
                   href={`tel:${CONTACT_INFO.phone.replace(/\s/g, '')}`}
-                  className="flex items-start gap-2 text-xs text-brand-muted transition-colors hover:text-brand-cyan"
+                  className="flex items-start gap-2 text-xs text-brand-muted transition-colors hover:text-kf-blue"
                 >
                   <Phone className="mt-0.5 h-3 w-3 shrink-0" />
                   {CONTACT_INFO.phone}
@@ -105,7 +104,7 @@ export default function Footer() {
               <li>
                 <a
                   href={`mailto:${CONTACT_INFO.email}`}
-                  className="flex items-start gap-2 text-xs text-brand-muted transition-colors hover:text-brand-cyan"
+                  className="flex items-start gap-2 text-xs text-brand-muted transition-colors hover:text-kf-blue"
                 >
                   <Mail className="mt-0.5 h-3 w-3 shrink-0" />
                   {CONTACT_INFO.email}
@@ -116,7 +115,7 @@ export default function Footer() {
                   href={CONTACT_INFO.mapUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-start gap-2 text-xs text-brand-muted transition-colors hover:text-brand-cyan"
+                  className="flex items-start gap-2 text-xs text-brand-muted transition-colors hover:text-kf-blue"
                 >
                   <MapPin className="mt-0.5 h-3 w-3 shrink-0" />
                   {CONTACT_INFO.poBox}
@@ -126,18 +125,17 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom Bar */}
         <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-white/[0.06] pt-6 md:flex-row">
           <p className="text-2xs text-brand-muted">
-            {new Date().getFullYear()} {SITE_CONFIG.name}. All rights
-            reserved. {CONTACT_INFO.cr}
+            {new Date().getFullYear()} {SITE_CONFIG.name}. {t.footer.rights}{' '}
+            {CONTACT_INFO.cr}
           </p>
           <nav className="flex gap-4" aria-label="Footer utility links">
             {footerLinks.resources.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
-                className="text-2xs text-brand-muted transition-colors hover:text-brand-cyan"
+                className="text-2xs text-brand-muted transition-colors hover:text-kf-blue"
               >
                 {link.label}
               </Link>

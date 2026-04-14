@@ -19,7 +19,7 @@ export const services: Service[] = [
       'Our billboard and banner solutions are designed to command attention and withstand the harshest environmental conditions across the GCC. We handle everything from site surveys and structural engineering to high-resolution printing and professional installation, ensuring your message reaches millions of eyes daily with maximum impact and longevity.',
     icon: 'Monitor',
     category: 'Outdoor',
-    image: 'https://images.unsplash.com/photo-1504711434969-e33886168d6c?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1523474253046-8cd2748b5fd2?auto=format&fit=crop&w=800&q=70',
     features: [
       'Large-format UV-resistant printing',
       'Steel and aluminum structural fabrication',
@@ -37,7 +37,7 @@ export const services: Service[] = [
       'Our advanced printing lab houses the latest technologies from HP Latex, Roland, Mutoh, Vutek, Canon, and Flora. We deliver vibrant, color-accurate output on virtually any substrate — from vinyl and fabric to rigid boards and specialty materials. Whether you need a single prototype or a mass production run spanning thousands of units, our quality control processes ensure consistent excellence.',
     icon: 'Printer',
     category: 'Production',
-    image: 'https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?auto=format&fit=crop&w=800&q=70',
     features: [
       'HP Latex, Roland, Mutoh, Vutek, Canon, Flora',
       'Water-based, pigment, latex, solvent, and UV inks',
@@ -55,7 +55,7 @@ export const services: Service[] = [
       'From tri-fold brochures and product catalogs to event flyers and direct mail pieces, we produce marketing collateral that reflects the premium quality of your brand. Our digital and offset printing capabilities ensure sharp text, vivid imagery, and consistent color reproduction across every single piece in your run.',
     icon: 'FileText',
     category: 'Print',
-    image: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&w=800&q=70',
     features: [
       'Digital and offset printing options',
       'Custom die-cutting and folding',
@@ -73,7 +73,7 @@ export const services: Service[] = [
       'We design and manufacture custom display holders and stands that elevate your products and brand presence in any environment. From sleek acrylic countertop displays to large freestanding units, every piece is engineered for stability, aesthetics, and ease of assembly. Our in-house CNC and laser cutting ensures precision tolerances on every component.',
     icon: 'LayoutGrid',
     category: 'Display',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&w=800&q=70',
     features: [
       'Acrylic, wood, metal, and composite materials',
       'CNC and laser precision cutting',
@@ -91,7 +91,7 @@ export const services: Service[] = [
       'Our signage division delivers end-to-end solutions from concept sketches to illuminated installations. We specialize in channel letters, pylon signs, monument signs, directional systems, and architectural signage. Every sign is fabricated in-house using premium materials and tested for durability, visibility, and compliance with local building codes and municipality regulations.',
     icon: 'Signpost',
     category: 'Signage',
-    image: 'https://images.unsplash.com/photo-1563906267088-b029e7101114?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1563906267088-b029e7101114?auto=format&fit=crop&w=800&q=70',
     features: [
       'Illuminated channel letters (front-lit, back-lit, halo)',
       'Pylon and monument signs',
@@ -109,7 +109,7 @@ export const services: Service[] = [
       'Our portable display solutions are built for the demanding pace of events, trade shows, and roadside promotions. From lightweight roll-up banners that set up in seconds to custom-printed pop-up walls and branded promotional counters, every product is designed for durability, portability, and maximum visual impact with minimal setup effort.',
     icon: 'Maximize2',
     category: 'Display',
-    image: 'https://images.unsplash.com/photo-1591115765373-5f9cf1da241c?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1591115765373-5f9cf1da241c?auto=format&fit=crop&w=800&q=70',
     features: [
       'Roll-up banners (economy to premium)',
       'Pop-up display walls (straight and curved)',
@@ -127,7 +127,7 @@ export const services: Service[] = [
       'We produce branded uniforms that unify your team and reinforce your corporate identity. From embroidered polo shirts and printed event T-shirts to fully tailored workwear, our garment division delivers quality finishing with fast turnarounds. We handle design, sampling, bulk production, and individual sizing to ensure every team member looks sharp and on-brand.',
     icon: 'Shirt',
     category: 'Branding',
-    image: 'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=800&q=70',
     features: [
       'Embroidery and screen printing',
       'Sublimation and heat transfer',
@@ -145,7 +145,7 @@ export const services: Service[] = [
       'We are specialists in exhibition stand design and fabrication, creating show-stopping environments that captivate visitors and generate leads. Our team handles everything from 3D concept renders and structural engineering to full fabrication, logistics, on-site installation, and post-show dismantling. Whether it is a modest shell scheme or an ambitious double-decker build, we deliver turnkey exhibition solutions.',
     icon: 'Building2',
     category: 'Events',
-    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=70',
     features: [
       '3D design visualization and renders',
       'Custom and modular stand systems',
@@ -163,7 +163,7 @@ export const services: Service[] = [
       'Our mall activation service transforms retail spaces into immersive brand experiences. We handle every aspect — from concept development and spatial design to fabrication, staffing coordination, and campaign analytics. Our activations are designed to stop foot traffic, drive engagement, generate social media buzz, and convert browsers into loyal brand advocates.',
     icon: 'ShoppingBag',
     category: 'Events',
-    image: 'https://images.unsplash.com/photo-1567449303078-57ad995bd17f?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1567449303078-57ad995bd17f?auto=format&fit=crop&w=800&q=70',
     features: [
       'Concept development and spatial planning',
       'Custom fabrication and scenic elements',
@@ -181,7 +181,7 @@ export const services: Service[] = [
       'We deliver comprehensive branding solutions that transform both indoor environments and outdoor spaces into powerful extensions of your brand identity. From office interiors and reception areas to building wraps and street-level installations, our team ensures visual consistency, premium material selection, and professional installation that leaves a lasting impression on every visitor and passerby.',
     icon: 'Layers',
     category: 'Branding',
-    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=70',
     features: [
       'Office and reception branding',
       'Building wraps and facade graphics',
@@ -199,7 +199,7 @@ export const services: Service[] = [
       'Our custom-built podiums, gondolas, and showcases are engineered to present your products in the best possible light. From luxury glass showcases for jewelry and electronics to freestanding gondola units for FMCG products, each display is crafted with premium materials and precise finishes. We also offer modular systems that can be reconfigured to adapt to seasonal layouts and new product launches.',
     icon: 'Box',
     category: 'Display',
-    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=70',
     features: [
       'Glass, acrylic, and wood showcases',
       'Illuminated display podiums',
@@ -217,7 +217,7 @@ export const services: Service[] = [
       'Turn your fleet into a powerful mobile advertising channel with our professional vehicle branding solutions. We handle everything from design adaptation and material selection to precision application and quality inspection. Our durable vinyl wraps are engineered to withstand extreme heat, sand, and road conditions common across the GCC, ensuring your brand message stays sharp mile after mile.',
     icon: 'Truck',
     category: 'Branding',
-    image: 'https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=800&q=70',
     features: [
       'Full vehicle wraps and partial decals',
       'Fleet branding (cars, trucks, buses)',
@@ -235,7 +235,7 @@ export const services: Service[] = [
       'Our awards and recognition division produces stunning shields, plaques, and trophies that celebrate achievement with elegance. From 3D laser-engraved crystal pieces to handcrafted wooden shields with metal inlays, we deliver bespoke recognition products for corporate events, government ceremonies, sports tournaments, and milestone celebrations.',
     icon: 'Award',
     category: 'Specialty',
-    image: 'https://images.unsplash.com/photo-1578269174936-2709b6aeb913?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1578269174936-2709b6aeb913?auto=format&fit=crop&w=800&q=70',
     features: [
       '3D and 2D crystal laser engraving',
       'Wooden shields with metal inlays',
@@ -253,7 +253,7 @@ export const services: Service[] = [
       'We design and install comprehensive wayfinding systems that guide visitors seamlessly through complex environments. From hospitals and university campuses to shopping malls and corporate headquarters, our sign systems combine clear typography, intuitive iconography, and premium materials to create navigation experiences that reduce confusion and enhance the visitor journey.',
     icon: 'Navigation',
     category: 'Signage',
-    image: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=800&q=70',
     features: [
       'Comprehensive wayfinding audits',
       'ADA and accessibility compliance',
@@ -271,7 +271,7 @@ export const services: Service[] = [
       'Our digital signage solutions bring your content to life with vibrant LED displays, interactive kiosks, and video walls. We provide end-to-end service from screen selection and content management system setup to custom mounting fabrication and ongoing technical support. Whether it is a single retail screen or a stadium-scale LED installation, we deliver reliable, high-impact digital experiences.',
     icon: 'Tv',
     category: 'Digital',
-    image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=70',
     features: [
       'Indoor and outdoor LED displays',
       'Video walls and LED tickers',
@@ -289,7 +289,7 @@ export const services: Service[] = [
       'We specialize in creating striking retail environments through custom shop facia, storefront signage, and in-store display platforms. Our solutions combine architectural design sensibility with commercial functionality, ensuring your retail space attracts foot traffic, communicates your brand story, and maximizes the customer experience from the first impression at the entrance to the final point of sale.',
     icon: 'Store',
     category: 'Retail',
-    image: 'https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=800&q=70',
     features: [
       'Custom storefront facia design',
       'In-store display platforms and fixtures',

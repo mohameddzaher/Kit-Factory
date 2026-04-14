@@ -2,50 +2,25 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import Image from 'next/image';
-import { ArrowRight, ChevronDown } from 'lucide-react';
+import SafeImage from '@/components/ui/SafeImage';
+import { ArrowRight } from 'lucide-react';
 import Button from '@/components/ui/Button';
+import { useLocale } from '@/lib/i18n/LocaleProvider';
+import { cn } from '@/lib/utils';
 
-/* ── rotating showcase images ── */
-const showcaseImages = [
-  'https://images.unsplash.com/photo-1761474258159-6c03a22f07ff?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80',
-  'https://images.unsplash.com/photo-1563906267088-b029e7101114?auto=format&fit=crop&w=800&q=80',
-  'https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=800&q=80',
-  'https://images.unsplash.com/photo-1633873275023-36235e25e2b3?q=80&w=1631&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+/* ── match-cut rotating frames ── */
+const matchCutFrames = [
+  'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=70',
+  'https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=1200&q=70',
+  'https://images.unsplash.com/photo-1563906267088-b029e7101114?auto=format&fit=crop&w=1200&q=70',
+  'https://images.unsplash.com/photo-1567449303078-57ad995bd17f?auto=format&fit=crop&w=1200&q=70',
+  'https://images.unsplash.com/photo-1504711434969-e33886168d6c?auto=format&fit=crop&w=1200&q=70',
 ];
 
-/* ── right-side image stack ── */
-const stackImages = [
-  {
-    src: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80',
-    alt: 'Indoor branding',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=600&q=80',
-    alt: 'Retail display',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1761474258159-6c03a22f07ff?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    alt: 'Mall activation',
-  },
-];
+/* TODO(client): replace with real Kit Factory hero video once provided. */
+const HERO_VIDEO_SRC = '/brand/hero.mp4';
 
-/* ── marquee items ── */
-const marqueeItems = [
-  'Billboards & Banners',
-  'Exhibition Stands',
-  'Vehicle Branding',
-  'Digital Signage',
-  'Retail Solutions',
-  'Signage Systems',
-  'Mall Activations',
-  'Large Format Printing',
-  'Corporate Branding',
-  'Wayfinding Systems',
-];
 
-/* ── stagger animation variants ── */
 const containerVariants = {
   hidden: {},
   visible: {
@@ -73,7 +48,9 @@ const fadeUp = {
 };
 
 export default function HeroSection() {
-  const [imgIndex, setImgIndex] = useState(0);
+  const { t, dir } = useLocale();
+  const [frameIndex, setFrameIndex] = useState(0);
+  const [videoFailed, setVideoFailed] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -86,8 +63,8 @@ export default function HeroSection() {
 
   useEffect(() => {
     intervalRef.current = setInterval(() => {
-      setImgIndex((prev) => (prev + 1) % showcaseImages.length);
-    }, 3500);
+      setFrameIndex((prev) => (prev + 1) % matchCutFrames.length);
+    }, 2600);
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
@@ -96,35 +73,62 @@ export default function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex min-h-screen flex-col overflow-hidden"
+      dir={dir}
+      className="relative flex min-h-screen flex-col overflow-hidden bg-brand-charcoal"
     >
-      {/* ═══════════ Background ═══════════ */}
+      {/* ═══════════ Background: video + match-cut fallback ═══════════ */}
       <motion.div className="absolute inset-0" style={{ y: bgY }}>
-        {/* Base: full-bleed dark image */}
-        <Image
-          src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1920&q=80"
-          alt=""
-          fill
-          className="object-cover"
-          sizes="100vw"
-          priority
-        />
-        {/* Heavy dark overlay */}
-        <div className="absolute inset-0 bg-brand-dark/85" />
-        {/* Gradient overlay for depth */}
-        <div className="absolute inset-0 bg-gradient-to-br from-brand-dark via-brand-dark/60 to-brand-dark/90" />
-        {/* Cyan & mauve accent glows */}
-        <div className="absolute -left-[15%] top-[15%] h-[500px] w-[500px] rounded-full bg-brand-cyan/[0.08] blur-[140px]" />
-        <div className="absolute -right-[10%] top-[40%] h-[400px] w-[400px] rounded-full bg-brand-mauve/[0.07] blur-[120px]" />
+        {!videoFailed && (
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            onError={() => setVideoFailed(true)}
+            className="absolute inset-0 h-full w-full object-cover"
+          >
+            <source src={HERO_VIDEO_SRC} type="video/mp4" />
+          </video>
+        )}
+
+        {/* Match-cut image layer (shown when no video, or behind) */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={frameIndex}
+            initial={{ opacity: 0, scale: 1.08 }}
+            animate={{ opacity: videoFailed ? 1 : 0.35, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute inset-0"
+          >
+            <SafeImage
+              src={matchCutFrames[frameIndex]}
+              alt=""
+              fill
+              className="object-cover"
+              sizes="100vw"
+              priority={frameIndex === 0}
+            />
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Darker overlay for readable text */}
+        <div className="absolute inset-0 bg-brand-charcoal/85" />
+        <div className="absolute inset-0 bg-gradient-to-br from-brand-charcoal via-brand-charcoal/70 to-brand-charcoal/95" />
+
+        {/* Brand-color accent glows (subtle) */}
+        <div className="absolute -left-[15%] top-[15%] h-[500px] w-[500px] rounded-full bg-kf-blue/[0.10] blur-[140px]" />
+        <div className="absolute -right-[10%] top-[40%] h-[400px] w-[400px] rounded-full bg-kf-magenta/[0.07] blur-[120px]" />
+        <div className="absolute left-[30%] bottom-[10%] h-[300px] w-[300px] rounded-full bg-kf-green/[0.06] blur-[120px]" />
       </motion.div>
 
-      {/* Corner decorative elements */}
+      {/* Corner decorative bars */}
       <div className="absolute left-6 top-28 hidden lg:block">
         <motion.div
           initial={{ scaleY: 0 }}
           animate={{ scaleY: 1 }}
           transition={{ duration: 1.2, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="h-24 w-px origin-top bg-gradient-to-b from-brand-cyan/40 to-transparent"
+          className="h-24 w-px origin-top bg-gradient-to-b from-kf-blue/50 to-transparent"
         />
       </div>
       <div className="absolute right-6 top-28 hidden lg:block">
@@ -135,7 +139,7 @@ export default function HeroSection() {
           className="text-right text-2xs tracking-[0.3em] text-brand-muted/30"
           style={{ writingMode: 'vertical-rl' }}
         >
-          PRODUCTION HOUSE
+          {t.hero.productionHouse}
         </motion.div>
       </div>
 
@@ -145,94 +149,50 @@ export default function HeroSection() {
         style={{ y: textY }}
       >
         <div className="grid w-full items-center gap-10 lg:grid-cols-[1fr_auto] lg:gap-16">
-          {/* Left: text content */}
+          {/* Left: text */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
           >
-            {/* Eyebrow */}
             <motion.div variants={fadeUp} className="mb-6 flex items-center gap-3">
-              <span className="h-px w-10 bg-brand-cyan/60" />
-              <span className="text-2xs font-semibold uppercase tracking-[0.3em] text-brand-cyan">
-                Kit Factory — Since 2018
+              <span className="h-px w-10 bg-kf-blue/70" />
+              <span className="text-2xs font-semibold uppercase tracking-[0.3em] text-kf-blue">
+                {t.hero.eyebrow}
               </span>
             </motion.div>
 
-            {/* ── Massive headline ── */}
+            {/* KIT Factory headline */}
             <div className="overflow-hidden">
-              <motion.div
+              <motion.h1
                 variants={lineVariants}
-                className="font-display text-[clamp(2rem,6vw,5rem)] font-bold leading-[0.95] tracking-tight text-brand-cream"
+                className="font-display text-[clamp(2.5rem,8vw,6.5rem)] font-extrabold leading-[0.92] tracking-tight text-brand-cream"
               >
-                We Craft
-              </motion.div>
+                <span className="gradient-text">KIT</span>{' '}
+                <span className="text-brand-cream">Factory</span>
+              </motion.h1>
             </div>
 
-            <div className="mt-1 flex flex-wrap items-center gap-4 sm:gap-6">
-              <div className="overflow-hidden">
-                <motion.div
-                  variants={lineVariants}
-                  className="font-display text-[clamp(2rem,6vw,5rem)] font-bold leading-[0.95] tracking-tight"
-                >
-                  <span className="gradient-text">Bold</span>
-                </motion.div>
-              </div>
-
-              {/* Inline rotating image window */}
-              <motion.div
-                variants={fadeUp}
-                className="relative h-[clamp(2.2rem,5vw,4rem)] w-[clamp(5.5rem,12vw,10rem)] overflow-hidden rounded-xl"
-              >
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={imgIndex}
-                    initial={{ opacity: 0, scale: 1.15 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.6 }}
-                    className="absolute inset-0"
-                  >
-                    <Image
-                      src={showcaseImages[imgIndex]}
-                      alt=""
-                      fill
-                      className="object-cover"
-                      sizes="14rem"
-                      priority
-                    />
-                  </motion.div>
-                </AnimatePresence>
-                <div className="absolute inset-0 rounded-xl ring-1 ring-inset ring-white/10" />
-              </motion.div>
-
-              <div className="overflow-hidden">
-                <motion.div
-                  variants={lineVariants}
-                  className="font-display text-[clamp(2rem,6vw,5rem)] font-bold leading-[0.95] tracking-tight text-brand-cream"
-                >
-                  Brand
-                </motion.div>
-              </div>
-            </div>
-
-            <div className="overflow-hidden">
-              <motion.div
+            {/* Tagline */}
+            <div className="mt-3 overflow-hidden">
+              <motion.p
                 variants={lineVariants}
-                className="font-display text-[clamp(2rem,6vw,5rem)] font-bold leading-[0.95] tracking-tight text-brand-cream"
+                className="font-display text-[clamp(1rem,2.4vw,1.75rem)] font-light italic leading-snug text-brand-cream/90"
               >
-                Experiences<span className="text-brand-cyan">.</span>
-              </motion.div>
+                {t.hero.tagline}
+                <span className="ml-1 text-kf-yellow">.</span>
+              </motion.p>
             </div>
 
-            {/* ── Description + CTAs ── */}
+            {/* Description */}
             <motion.p
               variants={fadeUp}
-              className="mt-8 max-w-md text-sm leading-relaxed text-justify text-brand-muted sm:mt-10"
+              className={cn(
+                'mt-8 max-w-md text-sm leading-relaxed text-brand-muted sm:mt-10',
+                dir === 'ltr' ? 'text-justify' : 'text-right'
+              )}
             >
-              End-to-end advertising, signage, exhibitions, and large-format
-              production — engineered with precision from concept to installation
-              across 33 cities in the GCC.
+              {t.hero.description}
             </motion.p>
 
             <motion.div
@@ -240,81 +200,81 @@ export default function HeroSection() {
               className="mt-6 flex flex-wrap items-center gap-3"
             >
               <Button href="/services" variant="primary" size="lg">
-                Our Services
-                <ArrowRight className="h-3.5 w-3.5" />
+                {t.hero.ctaServices}
+                <ArrowRight className={cn('h-3.5 w-3.5', dir === 'rtl' && 'rotate-180')} />
               </Button>
               <Button href="/projects" variant="outline" size="lg">
-                View Portfolio
+                {t.hero.ctaPortfolio}
               </Button>
             </motion.div>
           </motion.div>
 
-          {/* Right: stacked image composition (desktop) */}
+          {/* Right: match-cut frame stack */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="relative hidden h-[420px] w-[340px] lg:block"
           >
-            {/* Glow behind */}
-            <div className="absolute -inset-10 rounded-full bg-brand-cyan/[0.06] blur-[80px]" />
+            <div className="absolute -inset-10 rounded-full bg-kf-blue/[0.08] blur-[80px]" />
 
-            {/* Card 1 — back */}
-            <motion.div
-              animate={{ y: [0, -6, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute left-0 top-0 h-[200px] w-[260px] overflow-hidden rounded-2xl border border-white/[0.08] shadow-2xl shadow-black/40"
-            >
-              <Image
-                src={stackImages[0].src}
-                alt={stackImages[0].alt}
-                fill
-                className="object-cover"
-                sizes="260px"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-            </motion.div>
+            {[
+              { top: 0, left: 0, w: 260, h: 200, duration: 6, border: 'border-white/[0.08]' },
+              { top: 110, right: 0, w: 240, h: 180, duration: 7, border: 'border-kf-yellow/30' },
+              { bottom: 0, left: 30, w: 220, h: 170, duration: 5, border: 'border-kf-blue/30' },
+            ].map((cfg, idx) => {
+              const frameSrc = matchCutFrames[(frameIndex + idx) % matchCutFrames.length];
+              return (
+                <motion.div
+                  key={idx}
+                  animate={{ y: [0, idx % 2 === 0 ? -6 : 8, 0] }}
+                  transition={{ duration: cfg.duration, repeat: Infinity, ease: 'easeInOut' }}
+                  className={cn(
+                    'absolute overflow-hidden rounded-2xl border shadow-2xl shadow-black/40',
+                    cfg.border
+                  )}
+                  style={{
+                    top: cfg.top,
+                    bottom: cfg.bottom,
+                    left: cfg.left,
+                    right: cfg.right,
+                    width: cfg.w,
+                    height: cfg.h,
+                  }}
+                >
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={frameSrc}
+                      initial={{ opacity: 0, scale: 1.1 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                      className="absolute inset-0"
+                    >
+                      <SafeImage
+                        src={frameSrc}
+                        alt=""
+                        fill
+                        className="object-cover"
+                        sizes="260px"
+                      />
+                    </motion.div>
+                  </AnimatePresence>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                </motion.div>
+              );
+            })}
 
-            {/* Card 2 — middle */}
-            <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute right-0 top-[110px] h-[180px] w-[240px] overflow-hidden rounded-2xl border border-white/[0.08] shadow-2xl shadow-black/40"
-            >
-              <Image
-                src={stackImages[1].src}
-                alt={stackImages[1].alt}
-                fill
-                className="object-cover"
-                sizes="240px"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-            </motion.div>
-
-            {/* Card 3 — front */}
-            <motion.div
-              animate={{ y: [0, -5, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute bottom-0 left-[30px] h-[170px] w-[220px] overflow-hidden rounded-2xl border border-brand-cyan/20 shadow-2xl shadow-black/40"
-            >
-              <Image
-                src={stackImages[2].src}
-                alt={stackImages[2].alt}
-                fill
-                className="object-cover"
-                sizes="220px"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-            </motion.div>
-
-            {/* Decorative ring */}
-            <div className="absolute -right-4 -top-4 h-20 w-20 rounded-full border border-brand-cyan/10" />
-            <div className="absolute -bottom-3 -left-3 h-14 w-14 rounded-full border border-brand-mauve/10" />
+            <div className="absolute -right-4 -top-4 h-20 w-20 rounded-full border border-kf-blue/15" />
+            <div className="absolute -bottom-3 -left-3 h-14 w-14 rounded-full border border-kf-magenta/15" />
           </motion.div>
         </div>
       </motion.div>
 
-      {/* ═══════════ Marquee Strip ═══════════ */}
+      {/* Accent gradient bar */}
+      <div className="relative z-10 h-0.5 w-full kf-accent-bar opacity-80" />
+
+      {/* Marquee */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -322,19 +282,19 @@ export default function HeroSection() {
         className="relative z-10 overflow-hidden border-y border-white/[0.04] py-4"
       >
         <div className="flex animate-[marquee_30s_linear_infinite] whitespace-nowrap">
-          {[...marqueeItems, ...marqueeItems].map((item, i) => (
+          {[...t.hero.marquee, ...t.hero.marquee].map((item, i) => (
             <span
               key={i}
-              className="mx-6 flex items-center gap-3 text-xs font-medium uppercase tracking-[0.15em] text-brand-muted/40"
+              className="mx-6 flex items-center gap-3 text-xs font-medium uppercase tracking-[0.15em] text-brand-muted/45"
             >
-              <span className="h-1 w-1 rounded-full bg-brand-cyan/40" />
+              <span className="h-1 w-1 rounded-full bg-kf-blue/50" />
               {item}
             </span>
           ))}
         </div>
       </motion.div>
 
-      {/* ═══════════ Bottom stats bar (centered) ═══════════ */}
+      {/* Stats */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -344,16 +304,16 @@ export default function HeroSection() {
         <div className="mx-auto flex max-w-[90rem] items-center justify-center px-5 py-4 sm:px-8 lg:px-12">
           <div className="flex gap-10 sm:gap-16">
             {[
-              { val: '500+', label: 'Projects' },
-              { val: '33', label: 'Cities' },
-              { val: '200+', label: 'Clients' },
+              { val: '500+', label: t.hero.stats.projects },
+              { val: '33', label: t.hero.stats.cities },
+              { val: '200+', label: t.hero.stats.clients },
             ].map((s, i) => (
               <div key={s.label} className="flex items-center gap-5">
                 <div className="text-center">
                   <span className="font-display text-lg font-bold text-brand-cream sm:text-xl">
                     {s.val}
                   </span>
-                  <span className="ml-2 text-2xs text-brand-muted/50">{s.label}</span>
+                  <span className="mx-2 text-2xs text-brand-muted/60">{s.label}</span>
                 </div>
                 {i < 2 && (
                   <span className="hidden h-4 w-px bg-white/[0.08] sm:block" />
