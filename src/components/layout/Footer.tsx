@@ -125,10 +125,31 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-white/[0.06] pt-6 md:flex-row">
+        {/* Legal / registration band */}
+        <div className="mt-10 grid gap-3 border-t border-white/[0.06] pt-6 text-2xs text-brand-muted sm:grid-cols-3">
+          <div>
+            <p className="font-semibold uppercase tracking-wider text-brand-cream/80">
+              {dir === 'rtl' ? 'السجل التجاري' : 'Commercial Register'}
+            </p>
+            <p className="mt-0.5">#{CONTACT_INFO.commercialRegister}</p>
+          </div>
+          <div>
+            <p className="font-semibold uppercase tracking-wider text-brand-cream/80">
+              {dir === 'rtl' ? 'الرقم الضريبي' : 'Tax Registration'}
+            </p>
+            <p className="mt-0.5">{CONTACT_INFO.taxNumber}</p>
+          </div>
+          <div>
+            <p className="font-semibold uppercase tracking-wider text-brand-cream/80">
+              {dir === 'rtl' ? CONTACT_INFO.licenseLabel.ar : CONTACT_INFO.licenseLabel.en}
+            </p>
+            <p className="mt-0.5">#{CONTACT_INFO.commercialRegister}</p>
+          </div>
+        </div>
+
+        <div className="mt-6 flex flex-col items-center justify-between gap-3 border-t border-white/[0.06] pt-6 md:flex-row">
           <p className="text-2xs text-brand-muted">
-            {new Date().getFullYear()} {SITE_CONFIG.name}. {t.footer.rights}{' '}
-            {CONTACT_INFO.cr}
+            © {new Date().getFullYear()} {SITE_CONFIG.name}. {t.footer.rights}
           </p>
           <nav className="flex gap-4" aria-label="Footer utility links">
             {footerLinks.resources.map((link) => (

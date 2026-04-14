@@ -11,6 +11,7 @@ import FeaturedProjects from '@/components/home/FeaturedProjects';
 import ClientsPreview from '@/components/home/ClientsPreview';
 import CallToAction from '@/components/home/CallToAction';
 import ManagementMessage from '@/components/shared/ManagementMessage';
+import FindUs from '@/components/home/FindUs';
 
 export default function HomePage() {
   return (
@@ -25,6 +26,7 @@ export default function HomePage() {
       <FeaturedProjects />
       <ManagementMessage variant="light" />
       <ClientsPreview />
+      <FindUs />
       <CallToAction />
     </main>
   );

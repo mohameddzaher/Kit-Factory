@@ -25,13 +25,13 @@ export default function ClientsPreview() {
     reverse?: boolean;
     duration?: number;
   }) => (
-    <div className="group relative overflow-hidden">
+    <div dir="ltr" className="group relative overflow-hidden">
       {/* Edge fades */}
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-brand-charcoal to-transparent" />
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-brand-charcoal to-transparent" />
 
       <div
-        className="flex w-max gap-10 py-4"
+        className="flex w-max flex-row gap-10 py-4"
         style={{
           animation: `marquee ${duration}s linear infinite`,
           animationDirection: reverse ? 'reverse' : 'normal',

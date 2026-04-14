@@ -12,13 +12,24 @@ export const SITE_CONFIG = {
 export const CONTACT_INFO = {
   company: 'Kit Display Factory',
   cr: 'CR #4030368524',
+  commercialRegister: '4030368524',
+  taxNumber: '310446390500003',
+  licenseLabel: {
+    en: 'Industrial Establishment License',
+    ar: 'ترخيص منشأة صناعية',
+  },
   phone: '+966 12 620 0029',
   fax: '+966 12 683 5352',
   poBox: 'P.O.Box: 5858 – Jeddah, Saudi Arabia',
   email: 'info@kitdisplay-sa.com',
-  mapUrl: 'https://maps.app.goo.gl/d2NtkPWkcP7fce5AA',
+  mapUrl: 'https://maps.app.goo.gl/CTq3bg6zPj1PbySG6',
   mapEmbed:
-    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3710.933!2d39.1725!3d21.5425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjHCsDMyJzMzLjAiTiAzOcKwMTAnMjEuMCJF!5e0!3m2!1sen!2ssa!4v1700000000000',
+    'https://maps.google.com/maps?q=21.317438,39.196054&z=16&output=embed',
+  hours: {
+    management: { en: 'Management: 9:00 AM – 6:00 PM', ar: 'أوقات دوام الإدارة: ٩ صباحاً – ٦ مساءً' },
+    production: { en: 'Production: 8:00 PM – 3:00 AM', ar: 'أوقات دوام الإنتاج: ٨ مساءً – ٣ صباحاً' },
+    days: { en: 'Saturday – Thursday', ar: 'من السبت إلى الخميس' },
+  },
 } as const;
 
 export const SOCIAL_LINKS = [
@@ -45,7 +56,7 @@ export const SOCIAL_LINKS = [
   {
     name: 'Snapchat',
     url: 'https://www.snapchat.com/@kitfactorysa',
-    icon: 'camera',
+    icon: 'snapchat',
   },
   {
     name: 'Linktree',

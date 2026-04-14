@@ -5,9 +5,9 @@ import {
   Instagram,
   Linkedin,
   Twitter,
-  Camera,
   Link as LinkIcon,
 } from 'lucide-react';
+import SnapchatIcon from '@/components/shared/icons/Snapchat';
 import { SOCIAL_LINKS } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 
@@ -16,7 +16,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   instagram: Instagram,
   linkedin: Linkedin,
   twitter: Twitter,
-  camera: Camera,
+  snapchat: SnapchatIcon,
   link: LinkIcon,
 };
 

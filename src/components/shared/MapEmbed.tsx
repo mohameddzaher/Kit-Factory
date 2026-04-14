@@ -1,12 +1,14 @@
 'use client';
 
 import { cn } from '@/lib/utils';
+import { CONTACT_INFO } from '@/lib/constants';
 
 interface MapEmbedProps {
   className?: string;
+  height?: number;
 }
 
-export default function MapEmbed({ className }: MapEmbedProps) {
+export default function MapEmbed({ className, height = 380 }: MapEmbedProps) {
   return (
     <div
       className={cn(
@@ -15,15 +17,15 @@ export default function MapEmbed({ className }: MapEmbedProps) {
       )}
     >
       <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3710.933!2d39.1725!3d21.5425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjHCsDMyJzMzLjAiTiAzOcKwMTAnMjEuMCJF!5e0!3m2!1sen!2ssa!4v1700000000000"
+        src={CONTACT_INFO.mapEmbed}
         width="100%"
-        height="350"
+        height={height}
         style={{ border: 0 }}
         allowFullScreen
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
         title="Kit Factory Location — Jeddah, Saudi Arabia"
-        className="grayscale-[50%] contrast-[1.1]"
+        className="grayscale-[30%] contrast-[1.05]"
       />
     </div>
   );

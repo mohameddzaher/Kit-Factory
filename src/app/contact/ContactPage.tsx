@@ -22,12 +22,19 @@ export default function ContactPage() {
     Hours: { en: 'Working Hours', ar: 'ساعات العمل' },
   };
 
+  const isAr = dir === 'rtl';
+  const hoursLines = [
+    isAr ? CONTACT_INFO.hours.management.ar : CONTACT_INFO.hours.management.en,
+    isAr ? CONTACT_INFO.hours.production.ar : CONTACT_INFO.hours.production.en,
+    isAr ? CONTACT_INFO.hours.days.ar : CONTACT_INFO.hours.days.en,
+  ];
+
   const contactDetails = [
-    { icon: Phone, label: labels.Phone, value: CONTACT_INFO.phone, href: `tel:${CONTACT_INFO.phone.replace(/\s/g, '')}` },
-    { icon: Mail, label: labels.Email, value: CONTACT_INFO.email, href: `mailto:${CONTACT_INFO.email}` },
-    { icon: FileText, label: labels.Fax, value: CONTACT_INFO.fax, href: null as string | null },
-    { icon: MapPin, label: labels.Address, value: CONTACT_INFO.poBox, href: CONTACT_INFO.mapUrl },
-    { icon: Clock, label: labels.Hours, value: p.hours, href: null as string | null },
+    { icon: Phone, label: labels.Phone, value: CONTACT_INFO.phone, href: `tel:${CONTACT_INFO.phone.replace(/\s/g, '')}`, lines: null as string[] | null },
+    { icon: Mail, label: labels.Email, value: CONTACT_INFO.email, href: `mailto:${CONTACT_INFO.email}`, lines: null as string[] | null },
+    { icon: FileText, label: labels.Fax, value: CONTACT_INFO.fax, href: null as string | null, lines: null as string[] | null },
+    { icon: MapPin, label: labels.Address, value: CONTACT_INFO.poBox, href: CONTACT_INFO.mapUrl, lines: null as string[] | null },
+    { icon: Clock, label: labels.Hours, value: '', href: null as string | null, lines: hoursLines },
   ];
 
   return (
@@ -90,9 +97,19 @@ export default function ContactPage() {
                         <p className="text-2xs font-medium uppercase tracking-wider text-brand-charcoal/50">
                           {dir === 'rtl' ? item.label.ar : item.label.en}
                         </p>
-                        <p className="text-xs text-brand-charcoal">
-                          {item.value}
-                        </p>
+                        {item.lines ? (
+                          <div className="space-y-0.5">
+                            {item.lines.map((line, idx) => (
+                              <p key={idx} className="text-xs text-brand-charcoal">
+                                {line}
+                              </p>
+                            ))}
+                          </div>
+                        ) : (
+                          <p className="text-xs text-brand-charcoal">
+                            {item.value}
+                          </p>
+                        )}
                       </div>
                     </div>
                   );
