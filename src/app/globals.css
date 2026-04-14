@@ -116,13 +116,12 @@
   }
 }
 
-  /* RTL-safe logical spacing helpers */
-  .rtl-flip {
-    transform: scaleX(1);
-  }
-  html[dir='rtl'] .rtl-flip {
-    transform: scaleX(-1);
-  }
+/* RTL-safe logical spacing helpers */
+.rtl-flip {
+  transform: scaleX(1);
+}
+html[dir='rtl'] .rtl-flip {
+  transform: scaleX(-1);
 }
 
 /* Hexagonal clip-path for honeycomb layout */
