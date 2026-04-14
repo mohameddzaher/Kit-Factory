@@ -13,17 +13,22 @@ const FALLBACK_SRC = '/brand/placeholder.svg';
  *  - lazy-loads + async-decodes by default for smoother scrolling
  */
 export default function SafeImage(props: ImageProps) {
-  const { src, alt, unoptimized, loading, ...rest } = props;
+  const { src, alt, unoptimized, loading, priority, ...rest } = props;
   const [current, setCurrent] = useState(src);
   const [errored, setErrored] = useState(false);
+
+  // `loading` and `priority` are mutually exclusive in next/image.
+  // Only set `loading` when caller didn't opt into priority.
+  const loadingProp = priority ? undefined : loading ?? 'lazy';
 
   return (
     <Image
       {...rest}
       src={current}
       alt={alt}
+      priority={priority}
       unoptimized={unoptimized ?? true}
-      loading={loading ?? 'lazy'}
+      loading={loadingProp}
       decoding="async"
       onError={() => {
         if (!errored) {
