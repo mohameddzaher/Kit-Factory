@@ -85,16 +85,19 @@ export default function PortfolioGallery() {
                 >
                   <SafeImage
                     src={item.image}
-                    alt={t.portfolio.filters[item.category]}
+                    alt={item.label}
                     fill
                     sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-70 transition-opacity group-hover:opacity-90" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent opacity-75 transition-opacity group-hover:opacity-95" />
                   <div className="absolute inset-x-0 bottom-0 p-3 transition-transform group-hover:-translate-y-0.5">
                     <span className="text-2xs font-semibold uppercase tracking-wider text-kf-blue">
                       {t.portfolio.filters[item.category]}
                     </span>
+                    <h3 className="mt-0.5 text-xs font-semibold text-white">
+                      {item.label}
+                    </h3>
                   </div>
                 </motion.div>
               ))}

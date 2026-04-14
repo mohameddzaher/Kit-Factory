@@ -2,82 +2,33 @@ export type PortfolioFilter = 'all' | 'exhibitions' | 'cnc' | 'laser' | 'prints'
 
 export interface PortfolioItem {
   id: string;
-  titleKey: string;
+  label: string;
   category: Exclude<PortfolioFilter, 'all'>;
   image: string;
 }
 
+// Using picsum.photos with fixed seeds — stable, always loads, unique per card.
+// TODO(client): replace with real Kit Factory project photos.
+const pic = (seed: string) => `https://picsum.photos/seed/${seed}/800/800`;
+
 export const portfolioItems: PortfolioItem[] = [
-  {
-    id: 'p1',
-    titleKey: 'Exhibition Booth — Riyadh',
-    category: 'exhibitions',
-    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=70',
-  },
-  {
-    id: 'p2',
-    titleKey: 'Double-Decker Booth — GITEX',
-    category: 'exhibitions',
-    image: 'https://images.unsplash.com/photo-1591115765373-5f9cf1da241c?auto=format&fit=crop&w=800&q=70',
-  },
-  {
-    id: 'p3',
-    titleKey: 'Modular Booth System',
-    category: 'exhibitions',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&w=800&q=70',
-  },
-  {
-    id: 'p4',
-    titleKey: 'CNC Acrylic Fabrication',
-    category: 'cnc',
-    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=70',
-  },
-  {
-    id: 'p5',
-    titleKey: 'CNC Signage Cut',
-    category: 'cnc',
-    image: 'https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=800&q=70',
-  },
-  {
-    id: 'p6',
-    titleKey: 'CNC Wood Cabinetry',
-    category: 'cnc',
-    image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=800&q=70',
-  },
-  {
-    id: 'p7',
-    titleKey: 'Laser-Cut Metal Logo',
-    category: 'laser',
-    image: 'https://images.unsplash.com/photo-1518435298814-fe4e8a56c23d?auto=format&fit=crop&w=800&q=70',
-  },
-  {
-    id: 'p8',
-    titleKey: 'Laser Engraving',
-    category: 'laser',
-    image: 'https://images.unsplash.com/photo-1578269174936-2709b6aeb913?auto=format&fit=crop&w=800&q=70',
-  },
-  {
-    id: 'p9',
-    titleKey: 'Laser Precision Cut',
-    category: 'laser',
-    image: 'https://images.unsplash.com/photo-1581093458791-9d42e0b4a4c5?auto=format&fit=crop&w=800&q=70',
-  },
-  {
-    id: 'p10',
-    titleKey: 'Large-Format Print',
-    category: 'prints',
-    image: 'https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?auto=format&fit=crop&w=800&q=70',
-  },
-  {
-    id: 'p11',
-    titleKey: 'Brochures & Catalogs',
-    category: 'prints',
-    image: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&w=800&q=70',
-  },
-  {
-    id: 'p12',
-    titleKey: 'Billboard Production',
-    category: 'prints',
-    image: 'https://images.unsplash.com/photo-1504711434969-e33886168d6c?auto=format&fit=crop&w=800&q=70',
-  },
+  // Exhibition booths
+  { id: 'p1', label: 'Exhibition Booth — Riyadh',  category: 'exhibitions', image: pic('kf-booth-riyadh') },
+  { id: 'p2', label: 'Double-Decker — GITEX',      category: 'exhibitions', image: pic('kf-booth-gitex') },
+  { id: 'p3', label: 'Modular Booth System',        category: 'exhibitions', image: pic('kf-booth-modular') },
+
+  // CNC
+  { id: 'p4', label: 'CNC Acrylic Fabrication',     category: 'cnc',         image: pic('kf-cnc-acrylic') },
+  { id: 'p5', label: 'CNC Signage Cut',             category: 'cnc',         image: pic('kf-cnc-signage') },
+  { id: 'p6', label: 'CNC Wood Cabinetry',          category: 'cnc',         image: pic('kf-cnc-wood') },
+
+  // Laser
+  { id: 'p7', label: 'Laser-Cut Metal Logo',        category: 'laser',       image: pic('kf-laser-metal') },
+  { id: 'p8', label: 'Laser Engraving',             category: 'laser',       image: pic('kf-laser-engrave') },
+  { id: 'p9', label: 'Laser Precision Cut',         category: 'laser',       image: pic('kf-laser-precision') },
+
+  // Prints
+  { id: 'p10', label: 'Large-Format Print',         category: 'prints',      image: pic('kf-print-largeformat') },
+  { id: 'p11', label: 'Brochures & Catalogs',       category: 'prints',      image: pic('kf-print-brochures') },
+  { id: 'p12', label: 'Billboard Production',       category: 'prints',      image: pic('kf-print-billboard') },
 ];

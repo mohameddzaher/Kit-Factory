@@ -51,9 +51,9 @@ export default function CreativeProcess() {
 
         <div className="relative mt-6">
           {/* Timeline line */}
-          <div className="absolute left-4 top-0 hidden h-full w-px bg-kf-blue/30 md:left-1/2 md:block" />
+          <div className="absolute left-6 top-0 hidden h-full w-px bg-kf-blue/30 md:left-1/2 md:block" />
 
-          <div className="space-y-6 md:space-y-2">
+          <div className="space-y-8 md:space-y-4">
             {steps.map((step, i) => {
               const Icon = stepIcons[i];
               const isLeft = i % 2 === 0;
@@ -71,20 +71,20 @@ export default function CreativeProcess() {
                   {/* Mobile */}
                   <div
                     className={cn(
-                      'flex h-9 w-9 shrink-0 items-center justify-center rounded-full border md:hidden',
+                      'flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border md:hidden',
                       colorCls
                     )}
                   >
-                    <Icon className="h-4 w-4" />
+                    <Icon className="h-5 w-5" />
                   </div>
                   <div className="md:hidden">
-                    <span className={cn('text-2xs font-semibold uppercase tracking-wider', colorCls.split(' ')[0])}>
+                    <span className={cn('text-xs font-semibold uppercase tracking-wider', colorCls.split(' ')[0])}>
                       {t.process.step} {i + 1}
                     </span>
-                    <h3 className="text-sm font-semibold text-brand-cream">
+                    <h3 className="text-base font-semibold text-brand-cream">
                       {step.title}
                     </h3>
-                    <p className="mt-0.5 text-xs leading-relaxed text-brand-muted">
+                    <p className="mt-1 text-xs leading-relaxed text-brand-muted">
                       {step.description}
                     </p>
                   </div>
@@ -93,16 +93,16 @@ export default function CreativeProcess() {
                   <div
                     className={cn(
                       'hidden w-1/2 md:block',
-                      isLeft ? 'pr-12 text-right' : 'ml-auto pl-12 text-left'
+                      isLeft ? 'pr-16 text-right' : 'ml-auto pl-16 text-left'
                     )}
                   >
-                    <span className={cn('text-2xs font-semibold uppercase tracking-wider', colorCls.split(' ')[0])}>
+                    <span className={cn('text-xs font-semibold uppercase tracking-wider', colorCls.split(' ')[0])}>
                       {t.process.step} {i + 1}
                     </span>
-                    <h3 className="mt-0.5 text-sm font-semibold text-brand-cream">
+                    <h3 className="mt-1 text-lg font-bold text-brand-cream">
                       {step.title}
                     </h3>
-                    <p className="mt-0.5 text-xs leading-relaxed text-brand-muted">
+                    <p className="mt-1 text-sm leading-relaxed text-brand-muted">
                       {step.description}
                     </p>
                   </div>
@@ -110,11 +110,11 @@ export default function CreativeProcess() {
                   {/* Center icon (desktop) */}
                   <div
                     className={cn(
-                      'absolute left-1/2 hidden h-10 w-10 -translate-x-1/2 items-center justify-center rounded-full border backdrop-blur-sm md:flex',
+                      'absolute left-1/2 hidden h-14 w-14 -translate-x-1/2 items-center justify-center rounded-xl border backdrop-blur-sm md:flex',
                       colorCls
                     )}
                   >
-                    <Icon className="h-4 w-4" />
+                    <Icon className="h-6 w-6" />
                   </div>
                 </motion.div>
               );
