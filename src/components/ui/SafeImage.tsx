@@ -6,12 +6,14 @@ import { useState } from 'react';
 const FALLBACK_SRC = '/brand/placeholder.svg';
 
 /**
- * next/image wrapper that falls back to a local SVG placeholder
- * when the primary source fails to load. Also defaults to `unoptimized`
- * to skip Next's image optimizer (which can stall on external URLs in dev).
+ * next/image wrapper:
+ *  - falls back to a local SVG placeholder if the primary source 404s
+ *  - defaults to `unoptimized` to bypass Next's image optimizer
+ *    (avoids slow proxy on external URLs, especially in dev)
+ *  - lazy-loads + async-decodes by default for smoother scrolling
  */
 export default function SafeImage(props: ImageProps) {
-  const { src, alt, unoptimized, ...rest } = props;
+  const { src, alt, unoptimized, loading, ...rest } = props;
   const [current, setCurrent] = useState(src);
   const [errored, setErrored] = useState(false);
 
@@ -21,6 +23,8 @@ export default function SafeImage(props: ImageProps) {
       src={current}
       alt={alt}
       unoptimized={unoptimized ?? true}
+      loading={loading ?? 'lazy'}
+      decoding="async"
       onError={() => {
         if (!errored) {
           setErrored(true);

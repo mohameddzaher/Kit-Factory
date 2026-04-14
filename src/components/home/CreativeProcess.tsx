@@ -62,11 +62,11 @@ export default function CreativeProcess() {
               return (
                 <motion.div
                   key={step.key}
-                  initial={{ opacity: 0, y: 16 }}
+                  initial={{ opacity: 0, y: 14 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-40px' }}
-                  transition={{ duration: 0.5, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
-                  className="relative flex items-start gap-4 md:items-center md:gap-0 md:py-5"
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.45, delay: Math.min(i, 3) * 0.05, ease: [0.22, 1, 0.36, 1] }}
+                  className="gpu relative flex items-start gap-4 md:items-center md:gap-0 md:py-5"
                 >
                   {/* Mobile */}
                   <div

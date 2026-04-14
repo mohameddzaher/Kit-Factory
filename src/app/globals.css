@@ -96,6 +96,26 @@
     text-wrap: balance;
   }
 
+  /* Promote elements to their own layer for smoother transforms */
+  .gpu {
+    transform: translateZ(0);
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+  }
+}
+
+/* Honor reduced-motion preference globally */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
   /* RTL-safe logical spacing helpers */
   .rtl-flip {
     transform: scaleX(1);

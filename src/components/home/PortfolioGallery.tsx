@@ -77,11 +77,11 @@ export default function PortfolioGallery() {
                 <motion.div
                   key={item.id}
                   layout
-                  initial={{ opacity: 0, scale: 0.92 }}
+                  initial={{ opacity: 0, scale: 0.96 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.92 }}
-                  transition={{ duration: 0.4, delay: i * 0.04, ease: [0.22, 1, 0.36, 1] }}
-                  className="group relative aspect-square overflow-hidden rounded-xl bg-brand-dark ring-1 ring-white/5"
+                  exit={{ opacity: 0, scale: 0.96 }}
+                  transition={{ duration: 0.35, delay: Math.min(i, 5) * 0.03, ease: [0.22, 1, 0.36, 1] }}
+                  className="group gpu relative aspect-square overflow-hidden rounded-xl bg-brand-dark ring-1 ring-white/5"
                 >
                   <SafeImage
                     src={item.image}

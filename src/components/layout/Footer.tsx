@@ -125,25 +125,25 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Legal / registration band */}
-        <div className="mt-10 grid gap-3 border-t border-white/[0.06] pt-6 text-2xs text-brand-muted sm:grid-cols-3">
+        {/* Legal / registration band — centered */}
+        <div className="mt-10 grid gap-6 border-t border-white/[0.06] pt-6 text-center text-2xs text-brand-muted sm:grid-cols-3">
           <div>
             <p className="font-semibold uppercase tracking-wider text-brand-cream/80">
               {dir === 'rtl' ? 'السجل التجاري' : 'Commercial Register'}
             </p>
-            <p className="mt-0.5">#{CONTACT_INFO.commercialRegister}</p>
+            <p className="mt-1">#{CONTACT_INFO.commercialRegister}</p>
           </div>
           <div>
             <p className="font-semibold uppercase tracking-wider text-brand-cream/80">
               {dir === 'rtl' ? 'الرقم الضريبي' : 'Tax Registration'}
             </p>
-            <p className="mt-0.5">{CONTACT_INFO.taxNumber}</p>
+            <p className="mt-1">{CONTACT_INFO.taxNumber}</p>
           </div>
           <div>
             <p className="font-semibold uppercase tracking-wider text-brand-cream/80">
               {dir === 'rtl' ? CONTACT_INFO.licenseLabel.ar : CONTACT_INFO.licenseLabel.en}
             </p>
-            <p className="mt-0.5">#{CONTACT_INFO.commercialRegister}</p>
+            <p className="mt-1">#{CONTACT_INFO.commercialRegister}</p>
           </div>
         </div>
 
