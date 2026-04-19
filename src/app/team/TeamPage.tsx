@@ -43,10 +43,10 @@ export default function TeamPage() {
             {teamMembers.map((member, i) => (
               <motion.div
                 key={`${member.role}-${i}`}
-                initial={{ opacity: 0, y: 12 }}
+                initial={{ opacity: 0, y: 22 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.4, delay: i * 0.06 }}
+                viewport={{ once: true, margin: '-80px' }}
+                transition={{ duration: 0.75, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
                 className="group overflow-hidden rounded-xl border border-brand-charcoal/[0.06] bg-white transition-all duration-300 hover:border-brand-cyan/20 hover:shadow-lg"
               >
                 <div className="relative aspect-[4/3] overflow-hidden bg-brand-charcoal/5">
@@ -103,10 +103,10 @@ export default function TeamPage() {
             ].map((value, i) => (
               <motion.div
                 key={value.title}
-                initial={{ opacity: 0, y: 12 }}
+                initial={{ opacity: 0, y: 22 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.4, delay: i * 0.06 }}
+                viewport={{ once: true, margin: '-80px' }}
+                transition={{ duration: 0.75, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
                 className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-5"
               >
                 <h3 className="text-sm font-semibold text-brand-cream">

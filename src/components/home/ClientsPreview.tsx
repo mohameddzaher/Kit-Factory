@@ -71,8 +71,8 @@ export default function ClientsPreview() {
 
       {/* Full-width marquee — outside Container so logos scroll edge to edge */}
       <div className="mt-4 space-y-2">
-        <LogoTrack items={row1} duration={50} />
-        {row2.length > 0 && <LogoTrack items={row2} reverse duration={55} />}
+        <LogoTrack items={row1} duration={140} />
+        {row2.length > 0 && <LogoTrack items={row2} reverse duration={160} />}
       </div>
 
       <Container className="relative z-10">

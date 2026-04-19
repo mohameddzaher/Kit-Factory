@@ -12,6 +12,14 @@ import { projects, projectCategories } from '@/data/projects';
 import { cn } from '@/lib/utils';
 import { useLocale } from '@/lib/i18n/LocaleProvider';
 
+const categoryPalette = [
+  { text: 'text-kf-blue', bg: 'bg-kf-blue/10' },
+  { text: 'text-kf-green', bg: 'bg-kf-green/10' },
+  { text: 'text-kf-yellow', bg: 'bg-kf-yellow/15' },
+  { text: 'text-kf-red', bg: 'bg-kf-red/10' },
+  { text: 'text-kf-magenta', bg: 'bg-kf-magenta/10' },
+] as const;
+
 export default function ProjectsPage() {
   const { t, dir } = useLocale();
   const p = t.pages.projects;
@@ -81,13 +89,14 @@ export default function ProjectsPage() {
                 const description = local?.description ?? project.description;
                 const category =
                   local?.category ?? t.projects.categories[project.category] ?? project.category;
+                const tone = categoryPalette[i % categoryPalette.length];
 
                 return (
                   <motion.div
                     key={project.slug}
-                    initial={{ opacity: 0, y: 12 }}
+                    initial={{ opacity: 0, y: 24 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: i * 0.05 }}
+                    transition={{ duration: 0.6, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <Link
                       href={`/projects/${project.slug}`}
@@ -108,7 +117,7 @@ export default function ProjectsPage() {
                       </div>
                       <div className="p-4">
                         <div className="mb-2 flex items-center gap-2">
-                          <span className="rounded-md bg-kf-blue/10 px-2 py-0.5 text-2xs font-medium text-kf-blue">
+                          <span className={`rounded-md px-2 py-0.5 text-2xs font-medium ${tone.bg} ${tone.text}`}>
                             {category}
                           </span>
                           <span className="text-2xs text-brand-charcoal/40">

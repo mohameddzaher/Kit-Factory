@@ -34,9 +34,9 @@ export const CONTACT_INFO = {
 
 export const SOCIAL_LINKS = [
   {
-    name: 'Facebook',
-    url: 'https://www.facebook.com/profile.php?id=61551756032607&mibextid=LQQJ4d',
-    icon: 'facebook',
+    name: 'LinkedIn',
+    url: 'https://www.linkedin.com/company/kit-factory/',
+    icon: 'linkedin',
   },
   {
     name: 'Instagram',
@@ -44,19 +44,19 @@ export const SOCIAL_LINKS = [
     icon: 'instagram',
   },
   {
-    name: 'LinkedIn',
-    url: 'https://www.linkedin.com/company/kit-factory/',
-    icon: 'linkedin',
-  },
-  {
-    name: 'X',
-    url: 'https://x.com/KitFactorySA',
-    icon: 'twitter',
+    name: 'Facebook',
+    url: 'https://www.facebook.com/profile.php?id=61551756032607&mibextid=LQQJ4d',
+    icon: 'facebook',
   },
   {
     name: 'Snapchat',
     url: 'https://www.snapchat.com/@kitfactorysa',
     icon: 'snapchat',
+  },
+  {
+    name: 'X',
+    url: 'https://x.com/KitFactorySA',
+    icon: 'x',
   },
   {
     name: 'Linktree',

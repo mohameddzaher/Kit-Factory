@@ -7,8 +7,17 @@ import PageWrapper from '@/components/layout/PageWrapper';
 import ContactForm from '@/components/shared/ContactForm';
 import MapEmbed from '@/components/shared/MapEmbed';
 import SocialLinks from '@/components/shared/SocialLinks';
+import Reveal from '@/components/ui/Reveal';
 import { CONTACT_INFO } from '@/lib/constants';
 import { useLocale } from '@/lib/i18n/LocaleProvider';
+
+const palette = [
+  { text: 'text-kf-blue', bg: 'bg-kf-blue/10', border: 'hover:border-kf-blue/40' },
+  { text: 'text-kf-green', bg: 'bg-kf-green/10', border: 'hover:border-kf-green/40' },
+  { text: 'text-kf-yellow', bg: 'bg-kf-yellow/15', border: 'hover:border-kf-yellow/50' },
+  { text: 'text-kf-red', bg: 'bg-kf-red/10', border: 'hover:border-kf-red/40' },
+  { text: 'text-kf-magenta', bg: 'bg-kf-magenta/10', border: 'hover:border-kf-magenta/40' },
+] as const;
 
 export default function ContactPage() {
   const { t, dir } = useLocale();
@@ -87,11 +96,12 @@ export default function ContactPage() {
               </p>
 
               <div className="space-y-4">
-                {contactDetails.map((item) => {
+                {contactDetails.map((item, i) => {
+                  const tone = palette[i % palette.length];
                   const content = (
-                    <div className="flex items-start gap-3 rounded-lg border border-brand-charcoal/[0.06] bg-white p-3 transition-all duration-200 hover:border-kf-blue/30">
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-brand-charcoal/5">
-                        <item.icon className="h-3.5 w-3.5 text-brand-charcoal/70" />
+                    <div className={`flex items-start gap-3 rounded-lg border border-brand-charcoal/[0.06] bg-white p-3 transition-all duration-200 ${tone.border}`}>
+                      <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-md ${tone.bg}`}>
+                        <item.icon className={`h-3.5 w-3.5 ${tone.text}`} />
                       </div>
                       <div>
                         <p className="text-2xs font-medium uppercase tracking-wider text-brand-charcoal/50">
@@ -115,20 +125,23 @@ export default function ContactPage() {
                   );
 
                   const key = item.label.en;
-                  if (item.href) {
-                    return (
-                      <a
-                        key={key}
-                        href={item.href}
-                        target={item.href.startsWith('http') ? '_blank' : undefined}
-                        rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                      >
-                        {content}
-                      </a>
-                    );
-                  }
+                  const wrapped = item.href ? (
+                    <a
+                      href={item.href}
+                      target={item.href.startsWith('http') ? '_blank' : undefined}
+                      rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    >
+                      {content}
+                    </a>
+                  ) : (
+                    content
+                  );
 
-                  return <div key={key}>{content}</div>;
+                  return (
+                    <Reveal key={key} delay={i * 0.05}>
+                      {wrapped}
+                    </Reveal>
+                  );
                 })}
               </div>
 
@@ -147,7 +160,7 @@ export default function ContactPage() {
       {/* Map */}
       <section className="section-dark py-16 md:py-20">
         <Container>
-          <div className="mb-8 text-center">
+          <Reveal className="mb-8 text-center">
             <span className="mb-2 inline-block text-xs font-semibold uppercase tracking-[0.2em] text-kf-blue">
               {p.locationLabel}
             </span>
@@ -157,8 +170,10 @@ export default function ContactPage() {
             <p className="mt-2 text-sm text-brand-muted">
               {p.locationDescription}
             </p>
-          </div>
-          <MapEmbed />
+          </Reveal>
+          <Reveal delay={0.1}>
+            <MapEmbed />
+          </Reveal>
         </Container>
       </section>
     </PageWrapper>

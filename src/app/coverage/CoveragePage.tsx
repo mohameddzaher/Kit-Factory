@@ -8,8 +8,21 @@ import PageWrapper from '@/components/layout/PageWrapper';
 import MapEmbed from '@/components/shared/MapEmbed';
 import CallToAction from '@/components/home/CallToAction';
 import { regions } from '@/data/coverage';
-import { cn } from '@/lib/utils';
 import { useLocale } from '@/lib/i18n/LocaleProvider';
+
+const regionPalette = [
+  { text: 'text-kf-blue', bg: 'bg-kf-blue/10' },
+  { text: 'text-kf-green', bg: 'bg-kf-green/10' },
+  { text: 'text-kf-yellow', bg: 'bg-kf-yellow/15' },
+  { text: 'text-kf-red', bg: 'bg-kf-red/10' },
+  { text: 'text-kf-magenta', bg: 'bg-kf-magenta/10' },
+] as const;
+
+const statPalette = [
+  { text: 'text-kf-blue', bg: 'bg-kf-blue/10' },
+  { text: 'text-kf-yellow', bg: 'bg-kf-yellow/15' },
+  { text: 'text-kf-magenta', bg: 'bg-kf-magenta/10' },
+] as const;
 
 const regionKeyMap: Record<string, 'western' | 'eastern' | 'central' | 'southern'> = {
   Western: 'western',
@@ -50,21 +63,26 @@ export default function CoveragePage() {
               { icon: MapPin, value: `${totalCities}+`, label: t.hero.stats.cities },
               { icon: Building2, value: '4', label: p.regionsLabel },
               { icon: Globe, value: '2', label: t.stats.offices },
-            ].map((stat, i) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.2 + i * 0.06 }}
-                className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-4 text-center"
-              >
-                <stat.icon className="mx-auto mb-1 h-4 w-4 text-kf-blue" />
-                <p className="font-display text-lg font-bold text-brand-cream">
-                  {stat.value}
-                </p>
-                <p className="text-2xs text-brand-muted">{stat.label}</p>
-              </motion.div>
-            ))}
+            ].map((stat, i) => {
+              const tone = statPalette[i % statPalette.length];
+              return (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.55, delay: 0.2 + i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                  className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-4 text-center"
+                >
+                  <span className={`mx-auto mb-1 inline-flex h-8 w-8 items-center justify-center rounded-lg ${tone.bg} ${tone.text}`}>
+                    <stat.icon className="h-4 w-4" />
+                  </span>
+                  <p className="font-display text-lg font-bold text-brand-cream">
+                    {stat.value}
+                  </p>
+                  <p className="text-2xs text-brand-muted">{stat.label}</p>
+                </motion.div>
+              );
+            })}
           </div>
         </Container>
       </section>
@@ -81,25 +99,19 @@ export default function CoveragePage() {
             {regions.map((region, i) => {
               const key = regionKeyMap[region.name];
               const regionLabel = key ? t.coverage.regions[key] : region.name;
+              const tone = regionPalette[i % regionPalette.length];
               return (
                 <motion.div
                   key={region.name}
-                  initial={{ opacity: 0, y: 12 }}
+                  initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-40px' }}
-                  transition={{ duration: 0.4, delay: i * 0.06 }}
+                  viewport={{ once: true, margin: '-60px' }}
+                  transition={{ duration: 0.65, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
                   className="rounded-xl border border-brand-charcoal/[0.06] bg-white p-6"
                 >
                   <div className="mb-4 flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <div
-                        className={cn(
-                          'flex h-9 w-9 items-center justify-center rounded-lg',
-                          i % 2 === 0
-                            ? 'bg-kf-blue/10 text-kf-blue'
-                            : 'bg-kf-magenta/10 text-kf-magenta'
-                        )}
-                      >
+                      <div className={`flex h-9 w-9 items-center justify-center rounded-lg ${tone.bg} ${tone.text}`}>
                         <MapPin className="h-4 w-4" />
                       </div>
                       <h3 className="text-sm font-bold text-brand-charcoal">

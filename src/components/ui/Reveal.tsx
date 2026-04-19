@@ -14,8 +14,8 @@ type RevealProps = Omit<HTMLMotionProps<'div'>, 'variants'> & {
 export default function Reveal({
   children,
   delay = 0,
-  y = 24,
-  duration = 0.7,
+  y = 22,
+  duration = 0.85,
   once = true,
   ...rest
 }: RevealProps) {
@@ -24,7 +24,7 @@ export default function Reveal({
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration, delay, ease: [0.22, 1, 0.36, 1] },
+      transition: { duration, delay, ease: [0.16, 1, 0.3, 1] },
     },
   };
 
@@ -32,8 +32,9 @@ export default function Reveal({
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once, margin: '-60px' }}
+      viewport={{ once, margin: '-100px 0px -10% 0px' }}
       variants={variants}
+      style={{ willChange: 'transform, opacity' }}
       {...rest}
     >
       {children}

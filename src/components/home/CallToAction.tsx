@@ -19,10 +19,10 @@ export default function CallToAction() {
 
       <Container className="relative">
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-40px' }}
-          transition={{ duration: 0.4 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
           className="mx-auto max-w-xl text-center"
         >
           <span className="mb-2 inline-block text-xs font-semibold uppercase tracking-[0.2em] text-kf-blue">

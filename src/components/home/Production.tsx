@@ -5,6 +5,14 @@ import { Cpu, Printer, Paintbrush, Zap, Cog, Timer } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import SectionHeading from '@/components/ui/SectionHeading';
 
+const palette = [
+  { text: 'text-kf-blue', bg: 'bg-kf-blue/15', ring: 'hover:border-kf-blue/40' },
+  { text: 'text-kf-green', bg: 'bg-kf-green/15', ring: 'hover:border-kf-green/40' },
+  { text: 'text-kf-yellow', bg: 'bg-kf-yellow/20', ring: 'hover:border-kf-yellow/50' },
+  { text: 'text-kf-red', bg: 'bg-kf-red/15', ring: 'hover:border-kf-red/40' },
+  { text: 'text-kf-magenta', bg: 'bg-kf-magenta/15', ring: 'hover:border-kf-magenta/40' },
+];
+
 const capabilities = [
   {
     icon: Cpu,
@@ -52,28 +60,33 @@ export default function Production() {
         />
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {capabilities.map((cap, i) => (
-            <motion.div
-              key={cap.title}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.4, delay: i * 0.06 }}
-              className="flex gap-3 rounded-xl border border-brand-charcoal/[0.06] bg-white p-4 transition-all duration-300 hover:border-brand-cyan/20 hover:shadow-md"
-            >
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand-charcoal/5 text-brand-charcoal">
-                <cap.icon className="h-4 w-4" />
-              </div>
-              <div>
-                <h3 className="text-sm font-semibold text-brand-charcoal">
-                  {cap.title}
-                </h3>
-                <p className="mt-0.5 text-xs leading-relaxed text-brand-charcoal/60">
-                  {cap.description}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+          {capabilities.map((cap, i) => {
+            const tone = palette[i % palette.length];
+            return (
+              <motion.div
+                key={cap.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.55, delay: i * 0.07, ease: [0.22, 1, 0.36, 1] }}
+                className={`flex gap-3 rounded-xl border border-brand-charcoal/[0.06] bg-white p-4 transition-all duration-300 ${tone.ring} hover:shadow-md`}
+              >
+                <div
+                  className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ${tone.bg} ${tone.text}`}
+                >
+                  <cap.icon className="h-4 w-4" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold text-brand-charcoal">
+                    {cap.title}
+                  </h3>
+                  <p className="mt-0.5 text-xs leading-relaxed text-brand-charcoal/60">
+                    {cap.description}
+                  </p>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </Container>
     </section>

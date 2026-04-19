@@ -18,10 +18,10 @@ export default function Card({
 }: CardProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 12 }}
+      initial={{ opacity: 0, y: 22 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-40px' }}
-      transition={{ duration: 0.4 }}
+      viewport={{ once: true, margin: '-80px' }}
+      transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
       className={cn(
         'rounded-xl border p-5',
         dark

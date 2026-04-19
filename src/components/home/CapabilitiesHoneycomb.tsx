@@ -14,7 +14,7 @@ import SectionHeading from '@/components/ui/SectionHeading';
 import { cn } from '@/lib/utils';
 import { useLocale } from '@/lib/i18n/LocaleProvider';
 
-type Accent = 'cyan' | 'mauve';
+type Accent = 'blue' | 'green' | 'yellow' | 'red' | 'magenta';
 
 const capabilityConfigs: {
   icon: typeof Cpu;
@@ -22,38 +22,71 @@ const capabilityConfigs: {
   gradient: string;
   accent: Accent;
 }[] = [
-  { icon: Cpu, itemKey: 'cnc', gradient: 'from-brand-charcoal via-brand-dark to-brand-navy', accent: 'cyan' },
-  { icon: Printer, itemKey: 'printing', gradient: 'from-brand-dark via-brand-charcoal to-brand-dark', accent: 'mauve' },
-  { icon: Paintbrush, itemKey: 'paint', gradient: 'from-brand-navy via-brand-dark to-brand-charcoal', accent: 'cyan' },
-  { icon: Factory, itemKey: 'fabrication', gradient: 'from-brand-charcoal via-brand-navy to-brand-dark', accent: 'mauve' },
-  { icon: ShieldCheck, itemKey: 'testing', gradient: 'from-brand-dark via-brand-navy to-brand-charcoal', accent: 'cyan' },
-  { icon: Truck, itemKey: 'installation', gradient: 'from-brand-navy via-brand-charcoal to-brand-dark', accent: 'mauve' },
+  { icon: Cpu, itemKey: 'cnc', gradient: 'from-brand-charcoal via-brand-dark to-brand-navy', accent: 'blue' },
+  { icon: Printer, itemKey: 'printing', gradient: 'from-brand-dark via-brand-charcoal to-brand-dark', accent: 'green' },
+  { icon: Paintbrush, itemKey: 'paint', gradient: 'from-brand-navy via-brand-dark to-brand-charcoal', accent: 'yellow' },
+  { icon: Factory, itemKey: 'fabrication', gradient: 'from-brand-charcoal via-brand-navy to-brand-dark', accent: 'red' },
+  { icon: ShieldCheck, itemKey: 'testing', gradient: 'from-brand-dark via-brand-navy to-brand-charcoal', accent: 'magenta' },
+  { icon: Truck, itemKey: 'installation', gradient: 'from-brand-navy via-brand-charcoal to-brand-dark', accent: 'blue' },
 ];
 
 /* ── Accent style maps (explicit classes so Tailwind can detect them) ── */
 
 const accentStyles = {
-  cyan: {
-    glow: 'rgba(91, 192, 190, 0.25)',
-    iconBg: 'bg-brand-cyan/10',
-    iconBgHover: 'group-hover:bg-brand-cyan/20',
-    iconColor: 'text-brand-cyan',
-    btnBorder: 'border-brand-cyan/30',
-    btnBorderHover: 'hover:border-brand-cyan/70',
-    btnBorderGroupHover: 'group-hover:border-brand-cyan/50',
-    btnText: 'text-brand-cyan',
-    btnBgHover: 'hover:bg-brand-cyan/10',
+  blue: {
+    glow: 'rgba(0, 174, 239, 0.30)',
+    iconBg: 'bg-kf-blue/15',
+    iconBgHover: 'group-hover:bg-kf-blue/25',
+    iconColor: 'text-kf-blue',
+    btnBorder: 'border-kf-blue/40',
+    btnBorderHover: 'hover:border-kf-blue/80',
+    btnBorderGroupHover: 'group-hover:border-kf-blue/60',
+    btnText: 'text-kf-blue',
+    btnBgHover: 'hover:bg-kf-blue/10',
   },
-  mauve: {
-    glow: 'rgba(157, 142, 199, 0.25)',
-    iconBg: 'bg-brand-mauve/10',
-    iconBgHover: 'group-hover:bg-brand-mauve/20',
-    iconColor: 'text-brand-mauve',
-    btnBorder: 'border-brand-mauve/30',
-    btnBorderHover: 'hover:border-brand-mauve/70',
-    btnBorderGroupHover: 'group-hover:border-brand-mauve/50',
-    btnText: 'text-brand-mauve',
-    btnBgHover: 'hover:bg-brand-mauve/10',
+  green: {
+    glow: 'rgba(97, 208, 73, 0.30)',
+    iconBg: 'bg-kf-green/15',
+    iconBgHover: 'group-hover:bg-kf-green/25',
+    iconColor: 'text-kf-green',
+    btnBorder: 'border-kf-green/40',
+    btnBorderHover: 'hover:border-kf-green/80',
+    btnBorderGroupHover: 'group-hover:border-kf-green/60',
+    btnText: 'text-kf-green',
+    btnBgHover: 'hover:bg-kf-green/10',
+  },
+  yellow: {
+    glow: 'rgba(248, 197, 0, 0.35)',
+    iconBg: 'bg-kf-yellow/20',
+    iconBgHover: 'group-hover:bg-kf-yellow/30',
+    iconColor: 'text-kf-yellow',
+    btnBorder: 'border-kf-yellow/50',
+    btnBorderHover: 'hover:border-kf-yellow/90',
+    btnBorderGroupHover: 'group-hover:border-kf-yellow/70',
+    btnText: 'text-kf-yellow',
+    btnBgHover: 'hover:bg-kf-yellow/10',
+  },
+  red: {
+    glow: 'rgba(223, 0, 0, 0.30)',
+    iconBg: 'bg-kf-red/15',
+    iconBgHover: 'group-hover:bg-kf-red/25',
+    iconColor: 'text-kf-red',
+    btnBorder: 'border-kf-red/40',
+    btnBorderHover: 'hover:border-kf-red/80',
+    btnBorderGroupHover: 'group-hover:border-kf-red/60',
+    btnText: 'text-kf-red',
+    btnBgHover: 'hover:bg-kf-red/10',
+  },
+  magenta: {
+    glow: 'rgba(204, 0, 204, 0.30)',
+    iconBg: 'bg-kf-magenta/15',
+    iconBgHover: 'group-hover:bg-kf-magenta/25',
+    iconColor: 'text-kf-magenta',
+    btnBorder: 'border-kf-magenta/40',
+    btnBorderHover: 'hover:border-kf-magenta/80',
+    btnBorderGroupHover: 'group-hover:border-kf-magenta/60',
+    btnText: 'text-kf-magenta',
+    btnBgHover: 'hover:bg-kf-magenta/10',
   },
 } as const;
 
@@ -78,10 +111,10 @@ function HexTile({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 12 }}
+      initial={{ opacity: 0, y: 22 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-40px' }}
-      transition={{ duration: 0.4, delay: index * 0.06 }}
+      viewport={{ once: true, margin: '-80px' }}
+      transition={{ duration: 0.75, delay: Math.min(index, 5) * 0.07, ease: [0.16, 1, 0.3, 1] }}
       className="hex-tile group relative transition-all duration-300 hover:z-50 hover:-translate-y-1"
     >
       {/* Glow on hover */}

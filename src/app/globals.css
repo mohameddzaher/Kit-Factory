@@ -78,6 +78,28 @@
     @apply bg-gradient-to-r from-kf-yellow via-kf-red to-kf-magenta bg-clip-text text-transparent;
   }
 
+  /* Full brand palette gradient — cycles through all 5 brand colors */
+  .gradient-text-full {
+    background-image: linear-gradient(
+      90deg,
+      #00AEEF 0%,
+      #61D049 25%,
+      #F8C500 50%,
+      #DF0000 75%,
+      #CC00CC 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    background-size: 200% 100%;
+    animation: kfHueShift 8s linear infinite;
+  }
+
+  @keyframes kfHueShift {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+  }
+
   .glow-cyan {
     box-shadow: 0 0 40px rgba(0, 174, 239, 0.18);
   }
@@ -101,6 +123,48 @@
     transform: translateZ(0);
     will-change: transform, opacity;
     backface-visibility: hidden;
+  }
+}
+
+/* ───────────────────────────────────────────────────────────────
+   CSS scroll-driven reveals — progressive enhancement.
+   Works on Chrome/Edge 115+, Firefox 132+, Safari 18+. Falls back
+   to visible for older browsers via @supports guard.
+   Transform/opacity only — keep it cheap so scrolling stays smooth.
+   ─────────────────────────────────────────────────────────────── */
+@supports (animation-timeline: view()) {
+  .kf-reveal,
+  .kf-reveal-fade,
+  .kf-reveal-up {
+    opacity: 0;
+    will-change: transform, opacity;
+    animation: kfRevealUp linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 25%;
+  }
+
+  .kf-reveal-fade {
+    animation-name: kfRevealFade;
+  }
+
+  .kf-reveal-up {
+    animation-name: kfRevealUp;
+  }
+
+  @keyframes kfRevealFade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @keyframes kfRevealUp {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 28px, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
   }
 }
 

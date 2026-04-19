@@ -52,10 +52,10 @@ export default function ClientsPage() {
             {clients.map((client, i) => (
               <motion.div
                 key={client.logo}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.3, delay: (i % 8) * 0.03 }}
+                initial={{ opacity: 0, y: 20, scale: 0.96 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.55, delay: (i % 8) * 0.04, ease: [0.22, 1, 0.36, 1] }}
                 className="group flex aspect-[3/2] items-center justify-center rounded-xl border border-brand-charcoal/[0.06] bg-white p-3 transition-all duration-300 hover:border-kf-blue/30 hover:shadow-md"
               >
                 <div className="relative h-full w-full">
@@ -85,10 +85,10 @@ export default function ClientsPage() {
             {testimonials.map((tst, i) => (
               <motion.div
                 key={tst.name}
-                initial={{ opacity: 0, y: 12 }}
+                initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.4, delay: i * 0.06 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.65, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
                 className="flex flex-col rounded-2xl border border-white/[0.06] bg-white/[0.03] p-5"
               >
                 <div className="mb-3 flex items-center gap-0.5">
