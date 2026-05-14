@@ -16,13 +16,9 @@ import type { Locale } from '@/lib/i18n/dictionaries';
 export default function ClientsPreview() {
   const { t, locale } = useLocale();
 
-  // Two rows of logos and two rows of testimonials moving in opposite
-  // directions — keeps the section visually dynamic while showing every item.
+  // Two rows of logos for visual rhythm; testimonials run on a single track.
   const logoRow1 = clients.slice(0, Math.ceil(clients.length / 2));
   const logoRow2 = clients.slice(Math.ceil(clients.length / 2));
-
-  const tsRow1 = testimonials.slice(0, Math.ceil(testimonials.length / 2));
-  const tsRow2 = testimonials.slice(Math.ceil(testimonials.length / 2));
 
   const LogoTrack = ({
     items,
@@ -75,7 +71,7 @@ export default function ClientsPreview() {
   }) => {
     const tst = localizeTestimonial(raw, locale);
     return (
-      <article className="flex h-full w-[20rem] shrink-0 flex-col rounded-2xl border border-white/[0.06] bg-white/[0.03] p-5 transition-colors hover:border-kf-blue/30 md:w-[22rem]">
+      <article className="flex h-[16rem] w-[20rem] shrink-0 flex-col rounded-2xl border border-white/[0.06] bg-white/[0.03] p-5 transition-colors hover:border-kf-blue/30 md:h-[17rem] md:w-[22rem]">
         <div className="mb-3 flex items-center gap-0.5">
           {Array.from({ length: 5 }).map((_, idx) => (
             <Star
@@ -88,7 +84,7 @@ export default function ClientsPreview() {
             />
           ))}
         </div>
-        <p className="flex-1 text-sm leading-relaxed text-brand-cream/85">
+        <p className="flex-1 overflow-hidden text-sm leading-relaxed text-brand-cream/85">
           &ldquo;{tst.quote}&rdquo;
         </p>
         <div className="mt-4 border-t border-white/[0.06] pt-3">
@@ -178,13 +174,8 @@ export default function ClientsPreview() {
         </div>
       </Container>
 
-      {/* Full-width testimonial marquees — all 11 reviews split across two rows */}
-      <div className="space-y-4">
-        <TestimonialTrack items={tsRow1} duration={90} />
-        {tsRow2.length > 0 && (
-          <TestimonialTrack items={tsRow2} reverse duration={100} />
-        )}
-      </div>
+      {/* Full-width testimonial marquee — all 11 reviews on a single track */}
+      <TestimonialTrack items={testimonials} duration={120} />
     </section>
   );
 }
