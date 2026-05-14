@@ -374,49 +374,46 @@ export const dictionaries: Record<Locale, Dictionary> = {
       viewAllShort: 'All Projects',
       categories: {
         All: 'All',
-        Events: 'Events',
         Signage: 'Signage',
-        'Exhibition Stands': 'Exhibition Stands',
-        'Vehicle Branding': 'Vehicle Branding',
-        Retail: 'Retail',
-        'Digital Signage': 'Digital Signage',
+        Events: 'Events',
+        Fabrication: 'Fabrication',
       },
       items: {
-        'riyadh-season-activation': {
-          title: 'Riyadh Season Activation',
-          category: 'Events',
-          description:
-            'A large-scale mall activation for Riyadh Season featuring custom exhibition stands, interactive displays, and immersive brand environments spanning over 2,000 sqm.',
-        },
-        'jeddah-tower-signage': {
-          title: 'Jeddah Tower Signage System',
+        'salama-hospital': {
+          title: 'Salama Hospital',
           category: 'Signage',
           description:
-            'Comprehensive wayfinding and brand signage system for a major commercial tower in Jeddah.',
+            'Comprehensive wayfinding and identity signage package for Salama Hospital — façade branding, illuminated 3D letters, internal directional signs, and full on-site installation.',
         },
-        'national-fleet-wrap': {
-          title: 'National Fleet Branding',
-          category: 'Vehicle Branding',
+        'salama-2': {
+          title: 'Salama Polyclinic — Phase 2',
+          category: 'Signage',
           description:
-            'Full fleet vehicle branding for a national logistics company, covering 150+ trucks and vans with durable vinyl wraps.',
+            'Phase-two signage roll-out for the Salama Polyclinic network — exterior branding, departmental wayfinding, and ceiling-mounted directional panels delivered and installed end-to-end.',
         },
-        'retail-chain-facia': {
-          title: 'Retail Chain Store Redesign',
-          category: 'Retail',
+        'io-suite': {
+          title: 'IO Suite Office Branding',
+          category: 'Signage',
           description:
-            'Complete storefront redesign for a national retail chain, including new facia signage, in-store displays, and digital signage integration across 20 locations.',
+            'Premium office branding for IO Suite — illuminated façade letters, interior identity walls, and on-site video documentation of the install.',
         },
-        'corporate-exhibition-dubai': {
-          title: 'Corporate Exhibition Stand — Dubai',
-          category: 'Exhibition Stands',
+        '3d-letters': {
+          title: '3D Letters Fabrication',
+          category: 'Fabrication',
           description:
-            'A bespoke double-decker exhibition stand at GITEX Dubai featuring LED walls, meeting pods, and interactive product showcases.',
+            'A close-up showcase of our 3D letter craftsmanship — laser-cut metal faces, illuminated returns, and clean acrylic edges, fabricated entirely in-house.',
         },
-        'outdoor-campaign-ksa': {
-          title: 'KSA-Wide Outdoor Campaign',
-          category: 'Digital Signage',
+        'sgs-corporate-signage': {
+          title: 'SGS Corporate Signage',
+          category: 'Signage',
           description:
-            'Multi-city outdoor advertising campaign across 12 cities in KSA, deploying 200+ billboards and unipoles.',
+            'A large-scale corporate signage programme for SGS — exterior identity, façade illumination, and indoor branding installed across the facility.',
+        },
+        'saudia-activations': {
+          title: 'Saudia — Family Day & Eid Activations',
+          category: 'Events',
+          description:
+            'Brand activations for Saudia spanning the Family Day employee event and the seasonal Eid campaign — themed environments, photo zones, custom-printed décor, and branded giveaways.',
         },
       },
     },
@@ -827,44 +824,46 @@ export const dictionaries: Record<Locale, Dictionary> = {
       viewAllShort: 'كل المشاريع',
       categories: {
         All: 'الكل',
-        Events: 'فعاليات',
         Signage: 'لافتات',
-        'Exhibition Stands': 'أجنحة معارض',
-        'Vehicle Branding': 'تغليف مركبات',
-        Retail: 'تجزئة',
-        'Digital Signage': 'لافتات رقمية',
+        Events: 'فعاليات',
+        Fabrication: 'تصنيع',
       },
       items: {
-        'riyadh-season-activation': {
-          title: 'تفعيل موسم الرياض',
+        'salama-hospital': {
+          title: 'مستشفى سلامة',
+          category: 'لافتات',
+          description:
+            'باقة لافتات شاملة لمستشفى سلامة — هوية الواجهة، حروف ثلاثية الأبعاد مضيئة، لافتات إرشادية داخلية، والتركيب الكامل في الموقع.',
+        },
+        'salama-2': {
+          title: 'مجمع سلامة الطبي — المرحلة الثانية',
+          category: 'لافتات',
+          description:
+            'تنفيذ المرحلة الثانية من لافتات شبكة مجمع سلامة الطبي — هوية خارجية، إرشادات الأقسام، ولوحات اتجاهية معلّقة، مع توريد وتركيب متكامل.',
+        },
+        'io-suite': {
+          title: 'هوية مكاتب IO Suite',
+          category: 'لافتات',
+          description:
+            'هوية مكتبية متميزة لـ IO Suite — حروف مضيئة على الواجهة، جدران هوية داخلية، وتوثيق فيديو لعملية التركيب.',
+        },
+        '3d-letters': {
+          title: 'تصنيع حروف ثلاثية الأبعاد',
+          category: 'تصنيع',
+          description:
+            'عرض مقرب لإتقان صناعة الحروف ثلاثية الأبعاد — أوجه معدنية مقطوعة بالليزر، حواف إضاءة، وحواف أكريليك نظيفة، تُصنع بالكامل داخل ورشنا.',
+        },
+        'sgs-corporate-signage': {
+          title: 'لافتات SGS المؤسسية',
+          category: 'لافتات',
+          description:
+            'برنامج لافتات مؤسسية واسع النطاق لـ SGS — هوية خارجية، إضاءة واجهات، وهوية داخلية تُركّب عبر كامل المنشأة.',
+        },
+        'saudia-activations': {
+          title: 'الخطوط السعودية — يوم العائلة وتفعيلات العيد',
           category: 'فعاليات',
           description:
-            'تفعيل مول واسع النطاق لموسم الرياض بأجنحة معارض مخصصة وعروض تفاعلية وبيئات غامرة بأكثر من 2000 متر مربع.',
-        },
-        'jeddah-tower-signage': {
-          title: 'نظام لافتات برج جدة',
-          category: 'لافتات',
-          description: 'نظام إرشادي وهوية شامل لبرج تجاري كبير في جدة.',
-        },
-        'national-fleet-wrap': {
-          title: 'تغليف أسطول وطني',
-          category: 'تغليف مركبات',
-          description: 'تغليف كامل لأسطول شركة لوجستيات وطنية يشمل 150+ شاحنة وفان بفينيل عالي المتانة.',
-        },
-        'retail-chain-facia': {
-          title: 'إعادة تصميم سلسلة تجزئة',
-          category: 'تجزئة',
-          description: 'إعادة تصميم واجهات سلسلة تجزئة وطنية مع لافتات ومنصات عرض داخلية ولافتات رقمية في 20 فرعاً.',
-        },
-        'corporate-exhibition-dubai': {
-          title: 'جناح معرض شركات — دبي',
-          category: 'أجنحة معارض',
-          description: 'جناح معرض دبل ديكر مخصص في معرض GITEX دبي بشاشات LED وغرف اجتماعات وعروض منتجات تفاعلية.',
-        },
-        'outdoor-campaign-ksa': {
-          title: 'حملة خارجية على مستوى المملكة',
-          category: 'لافتات رقمية',
-          description: 'حملة إعلان خارجية في 12 مدينة بالمملكة بنشر 200+ بيلبورد ويونيبول.',
+            'تفعيلات لعلامة الخطوط السعودية تشمل يوم العائلة لموظفي الشركة وحملة العيد الموسمية — بيئات بتيمات خاصة، مناطق تصوير، ديكور مطبوع مخصص، وهدايا برندد.',
         },
       },
     },

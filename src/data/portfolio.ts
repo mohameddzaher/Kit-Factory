@@ -7,28 +7,32 @@ export interface PortfolioItem {
   image: string;
 }
 
-// Using picsum.photos with fixed seeds — stable, always loads, unique per card.
-// TODO(client): replace with real Kit Factory project photos.
-const pic = (seed: string) => `https://picsum.photos/seed/${seed}/800/800`;
+const gd = (id: string) => `https://lh3.googleusercontent.com/d/${id}`;
 
+// Real Kit Factory work, pulled from the production Drive folders.
+// Filter mapping:
+//   exhibitions → Saudia event activations
+//   cnc         → 3D Letters in-house fabrication
+//   laser       → corporate signage builds (SGS, Salama Hospital)
+//   prints      → branded décor & illuminated print work
 export const portfolioItems: PortfolioItem[] = [
-  // Exhibition booths
-  { id: 'p1', label: 'Exhibition Booth — Riyadh',  category: 'exhibitions', image: pic('kf-booth-riyadh') },
-  { id: 'p2', label: 'Double-Decker — GITEX',      category: 'exhibitions', image: pic('kf-booth-gitex') },
-  { id: 'p3', label: 'Modular Booth System',        category: 'exhibitions', image: pic('kf-booth-modular') },
+  // Exhibitions / Activations — Saudia
+  { id: 'p-saudia-1', label: 'Saudia — Family Day Activation', category: 'exhibitions', image: gd('1lp_PbCGqxU5tRzeyzvEtdJADMWR9NLKf') },
+  { id: 'p-saudia-2', label: 'Saudia — Eid Brand Zone',         category: 'exhibitions', image: gd('10e7mM1xXE0D14Jzl3i1Nn31Q5lxMlgwh') },
+  { id: 'p-saudia-3', label: 'Saudia — Themed Décor',           category: 'exhibitions', image: gd('1rsp16lCNNGV0ydCzZGJBrBDF4jgQxt4V') },
 
-  // CNC
-  { id: 'p4', label: 'CNC Acrylic Fabrication',     category: 'cnc',         image: pic('kf-cnc-acrylic') },
-  { id: 'p5', label: 'CNC Signage Cut',             category: 'cnc',         image: pic('kf-cnc-signage') },
-  { id: 'p6', label: 'CNC Wood Cabinetry',          category: 'cnc',         image: pic('kf-cnc-wood') },
+  // CNC / Fabrication — 3D Letters
+  { id: 'p-3d-1', label: '3D Letters — Illuminated Build',  category: 'cnc', image: gd('1x_yHST6mZ-d8L0QBK11L-YJQexACT_kR') },
+  { id: 'p-3d-2', label: '3D Letters — Metal Faces',        category: 'cnc', image: gd('1sfSDREOlXBWpap-Qr7bVbnNXzuzNoArp') },
+  { id: 'p-3d-3', label: '3D Letters — Acrylic Returns',    category: 'cnc', image: gd('1R2bjFfxUm93vskbsvI49A5Ziz6h3o04y') },
 
-  // Laser
-  { id: 'p7', label: 'Laser-Cut Metal Logo',        category: 'laser',       image: pic('kf-laser-metal') },
-  { id: 'p8', label: 'Laser Engraving',             category: 'laser',       image: pic('kf-laser-engrave') },
-  { id: 'p9', label: 'Laser Precision Cut',         category: 'laser',       image: pic('kf-laser-precision') },
+  // Laser / Signage — SGS & Salama Hospital
+  { id: 'p-sgs-1',    label: 'SGS — Façade Identity',          category: 'laser', image: gd('1rhDS9-bjtM3olB98uzNIm734nHwJp5RS') },
+  { id: 'p-sgs-2',    label: 'SGS — Indoor Branding',          category: 'laser', image: gd('1zOpjGjA_fDr1P9_uGqVsXF5PHBcaVfZq') },
+  { id: 'p-salama-1', label: 'Salama Hospital — Wayfinding',   category: 'laser', image: gd('1xM6gYOiLw2LPX6jajJlXiMHv4sCSNlev') },
 
-  // Prints
-  { id: 'p10', label: 'Large-Format Print',         category: 'prints',      image: pic('kf-print-largeformat') },
-  { id: 'p11', label: 'Brochures & Catalogs',       category: 'prints',      image: pic('kf-print-brochures') },
-  { id: 'p12', label: 'Billboard Production',       category: 'prints',      image: pic('kf-print-billboard') },
+  // Prints / Branded Production — IO Suite, Salama
+  { id: 'p-io-1',     label: 'IO Suite — Office Branding',     category: 'prints', image: gd('1-5fKGwVq98WVNNAysnA_vyGTxIU_D2pY') },
+  { id: 'p-io-2',     label: 'IO Suite — Identity Wall',       category: 'prints', image: gd('1Ymuan2crxax8GEndwzNBm099_pVQxfWA') },
+  { id: 'p-salama-2', label: 'Salama Polyclinic — Signage',    category: 'prints', image: gd('1xGC1WfDcR3Ap21EyuDz23KK5hw5rWtqc') },
 ];
