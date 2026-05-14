@@ -156,6 +156,14 @@ export interface Dictionary {
       journeyLabel: string;
       journeyTitle: string;
       milestones: { year: string; title: string; description: string }[];
+      certificationsLabel: string;
+      certificationsTitle: string;
+      certificationsDescription: string;
+      certifications: Record<
+        'iso9001' | 'iso14001' | 'iso45001' | 'gmp',
+        { title: string; description: string }
+      >;
+      certificationsCta: string;
     };
     services: { eyebrow: string; heroTitle: string; heroDescription: string };
     projects: { eyebrow: string; heroTitle: string; heroDescription: string };
@@ -573,6 +581,29 @@ export const dictionaries: Record<Locale, Dictionary> = {
           { year: '2022', title: '33 Cities Covered', description: 'Achieved nationwide coverage with offices and operations in 33+ cities across KSA.' },
           { year: '2024', title: 'Regional Leadership', description: 'Recognized as a premier indoor & outdoor production house across the GCC.' },
         ],
+        certificationsLabel: 'Certifications',
+        certificationsTitle: 'Certified by International Standards',
+        certificationsDescription:
+          'Our operations are accredited against globally recognized management standards — covering quality, environment, safety, and good manufacturing practices.',
+        certifications: {
+          iso9001: {
+            title: 'ISO 9001',
+            description: 'Quality Management System — consistent quality across every project.',
+          },
+          iso14001: {
+            title: 'ISO 14001',
+            description: 'Environmental Management System — responsible, low-impact operations.',
+          },
+          iso45001: {
+            title: 'ISO 45001',
+            description: 'Occupational Health & Safety — a safer workplace at every stage.',
+          },
+          gmp: {
+            title: 'GMP',
+            description: 'Good Manufacturing Practices — disciplined, audit-ready production.',
+          },
+        },
+        certificationsCta: 'View certificate',
       },
       services: {
         eyebrow: 'Our Services',
@@ -993,6 +1024,29 @@ export const dictionaries: Record<Locale, Dictionary> = {
           { year: '2022', title: 'تغطية 33 مدينة', description: 'حققنا تغطية وطنية بوجود عمليات في أكثر من 33 مدينة في المملكة.' },
           { year: '2024', title: 'ريادة إقليمية', description: 'نحن بيت الإنتاج الرائد للإعلانات الداخلية والخارجية في الخليج.' },
         ],
+        certificationsLabel: 'الشهادات',
+        certificationsTitle: 'حاصلون على شهادات معايير عالمية',
+        certificationsDescription:
+          'عملياتنا معتمدة وفق أنظمة إدارة معترف بها دولياً — تشمل الجودة والبيئة والسلامة المهنية وممارسات التصنيع الجيد.',
+        certifications: {
+          iso9001: {
+            title: 'ISO 9001',
+            description: 'نظام إدارة الجودة — جودة موحّدة في كل مشروع.',
+          },
+          iso14001: {
+            title: 'ISO 14001',
+            description: 'نظام الإدارة البيئية — عمليات مسؤولة وأقل أثراً.',
+          },
+          iso45001: {
+            title: 'ISO 45001',
+            description: 'الصحة والسلامة المهنية — بيئة عمل أكثر أماناً في كل مرحلة.',
+          },
+          gmp: {
+            title: 'GMP',
+            description: 'ممارسات التصنيع الجيد — إنتاج منضبط جاهز للتدقيق.',
+          },
+        },
+        certificationsCta: 'عرض الشهادة',
       },
       services: {
         eyebrow: 'خدماتنا',

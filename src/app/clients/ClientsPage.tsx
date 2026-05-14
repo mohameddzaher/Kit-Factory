@@ -8,11 +8,11 @@ import SectionHeading from '@/components/ui/SectionHeading';
 import PageWrapper from '@/components/layout/PageWrapper';
 import CallToAction from '@/components/home/CallToAction';
 import { clients } from '@/data/clients';
-import { testimonials } from '@/data/testimonials';
+import { testimonials, localizeTestimonial } from '@/data/testimonials';
 import { useLocale } from '@/lib/i18n/LocaleProvider';
 
 export default function ClientsPage() {
-  const { t, dir } = useLocale();
+  const { t, dir, locale } = useLocale();
   const p = t.pages.clients;
 
   return (
@@ -81,48 +81,50 @@ export default function ClientsPage() {
             description={p.testimonialsDescription}
           />
 
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {testimonials.map((tst, i) => (
-              <motion.div
-                key={tst.name}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-60px' }}
-                transition={{ duration: 0.65, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
-                className="flex flex-col rounded-2xl border border-white/[0.06] bg-white/[0.03] p-5"
-              >
-                <div className="mb-3 flex items-center gap-0.5">
-                  {Array.from({ length: 5 }).map((_, idx) => (
-                    <Star
-                      key={idx}
-                      className={
-                        idx < tst.rating
-                          ? 'h-3.5 w-3.5 fill-kf-yellow text-kf-yellow'
-                          : 'h-3.5 w-3.5 text-white/20'
-                      }
-                    />
-                  ))}
-                </div>
-                <p className="flex-1 text-sm leading-relaxed text-brand-cream/85">
-                  &ldquo;{tst.quote}&rdquo;
-                </p>
-                <div className="mt-4 border-t border-white/[0.06] pt-3">
-                  <p className="text-xs font-semibold text-brand-cream">{tst.name}</p>
-                  {tst.role && <p className="text-2xs text-brand-muted">{tst.role}</p>}
-                  {tst.mapUrl && (
-                    <a
-                      href={tst.mapUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-2 inline-flex items-center gap-1 text-2xs font-semibold uppercase tracking-wider text-kf-blue hover:underline"
-                    >
-                      {t.testimonials.readOnGoogle}
-                      <ExternalLink className="h-2.5 w-2.5" />
-                    </a>
-                  )}
-                </div>
-              </motion.div>
-            ))}
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {testimonials.map((raw, i) => {
+              const tst = localizeTestimonial(raw, locale);
+              return (
+                <motion.div
+                  key={tst.name + i}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-60px' }}
+                  transition={{ duration: 0.6, delay: (i % 4) * 0.06, ease: [0.22, 1, 0.36, 1] }}
+                  className="flex flex-col rounded-2xl border border-white/[0.06] bg-white/[0.03] p-5 transition-colors hover:border-kf-blue/30"
+                >
+                  <div className="mb-3 flex items-center gap-0.5">
+                    {Array.from({ length: 5 }).map((_, idx) => (
+                      <Star
+                        key={idx}
+                        className={
+                          idx < tst.rating
+                            ? 'h-3.5 w-3.5 fill-kf-yellow text-kf-yellow'
+                            : 'h-3.5 w-3.5 text-white/20'
+                        }
+                      />
+                    ))}
+                  </div>
+                  <p className="flex-1 text-sm leading-relaxed text-brand-cream/85">
+                    &ldquo;{tst.quote}&rdquo;
+                  </p>
+                  <div className="mt-4 border-t border-white/[0.06] pt-3">
+                    <p className="text-xs font-semibold text-brand-cream">{tst.name}</p>
+                    {tst.mapUrl && (
+                      <a
+                        href={tst.mapUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-2 inline-flex items-center gap-1 text-2xs font-semibold uppercase tracking-wider text-kf-blue hover:underline"
+                      >
+                        {t.testimonials.readOnGoogle}
+                        <ExternalLink className="h-2.5 w-2.5" />
+                      </a>
+                    )}
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </Container>
       </section>

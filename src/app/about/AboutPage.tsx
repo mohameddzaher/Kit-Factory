@@ -10,6 +10,11 @@ import {
   Building2,
   Globe,
   Handshake,
+  BadgeCheck,
+  Leaf,
+  ShieldCheck,
+  Factory,
+  FileText,
 } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import SectionHeading from '@/components/ui/SectionHeading';
@@ -18,6 +23,63 @@ import ManagementMessage from '@/components/shared/ManagementMessage';
 import { useLocale } from '@/lib/i18n/LocaleProvider';
 
 const valueIcons = [Target, Compass, Award, Handshake] as const;
+
+const certifications = [
+  {
+    key: 'iso9001' as const,
+    icon: BadgeCheck,
+    file: '/certificates/ISO%209001%20-%20KIT%20FACTORY%20COMPANY.pdf',
+    tone: 'blue' as const,
+  },
+  {
+    key: 'iso14001' as const,
+    icon: Leaf,
+    file: '/certificates/ISO%2014001%20-%20KIT%20FACTORY%20COMPANY.pdf',
+    tone: 'green' as const,
+  },
+  {
+    key: 'iso45001' as const,
+    icon: ShieldCheck,
+    file: '/certificates/ISO%2045001%20-%20KIT%20FACTORY%20COMPANY.pdf',
+    tone: 'red' as const,
+  },
+  {
+    key: 'gmp' as const,
+    icon: Factory,
+    file: '/certificates/GMP%20-%20KIT%20FACTORY%20COMPANY.pdf',
+    tone: 'magenta' as const,
+  },
+];
+
+const certTones: Record<
+  'blue' | 'green' | 'red' | 'magenta',
+  { text: string; bg: string; border: string; ring: string }
+> = {
+  blue: {
+    text: 'text-kf-blue',
+    bg: 'bg-kf-blue/10',
+    border: 'border-kf-blue/30',
+    ring: 'hover:border-kf-blue/60',
+  },
+  green: {
+    text: 'text-kf-green',
+    bg: 'bg-kf-green/10',
+    border: 'border-kf-green/30',
+    ring: 'hover:border-kf-green/60',
+  },
+  red: {
+    text: 'text-kf-red',
+    bg: 'bg-kf-red/10',
+    border: 'border-kf-red/30',
+    ring: 'hover:border-kf-red/60',
+  },
+  magenta: {
+    text: 'text-kf-magenta',
+    bg: 'bg-kf-magenta/10',
+    border: 'border-kf-magenta/30',
+    ring: 'hover:border-kf-magenta/60',
+  },
+};
 
 const palette = [
   { text: 'text-kf-blue', bg: 'bg-kf-blue/10', border: 'border-kf-blue/30', ring: 'hover:border-kf-blue/40' },
@@ -244,6 +306,56 @@ export default function AboutPage() {
                   </h3>
                   <p className="mt-0.5 text-xs text-brand-muted">{m.description}</p>
                 </motion.div>
+              );
+            })}
+          </div>
+        </Container>
+      </section>
+
+      {/* Certifications */}
+      <section dir={dir} className="section-light py-16 md:py-20">
+        <Container>
+          <SectionHeading
+            label={p.certificationsLabel}
+            title={p.certificationsTitle}
+            description={p.certificationsDescription}
+            dark={false}
+          />
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {certifications.map((cert, i) => {
+              const tone = certTones[cert.tone];
+              const content = p.certifications[cert.key];
+              return (
+                <motion.a
+                  key={cert.key}
+                  href={cert.file}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, y: 22 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ duration: 0.55, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                  className={`group flex flex-col rounded-xl border border-brand-charcoal/[0.06] bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg ${tone.ring}`}
+                >
+                  <div
+                    className={`mb-4 flex h-12 w-12 items-center justify-center rounded-lg ${tone.bg}`}
+                  >
+                    <cert.icon className={`h-6 w-6 ${tone.text}`} />
+                  </div>
+                  <h3 className="font-display text-base font-bold text-brand-charcoal">
+                    {content.title}
+                  </h3>
+                  <p className="mt-1.5 flex-1 text-xs leading-relaxed text-brand-charcoal/60">
+                    {content.description}
+                  </p>
+                  <span
+                    className={`mt-4 inline-flex items-center gap-1.5 text-2xs font-semibold uppercase tracking-wider ${tone.text}`}
+                  >
+                    <FileText className="h-3 w-3" />
+                    {p.certificationsCta}
+                  </span>
+                </motion.a>
               );
             })}
           </div>
