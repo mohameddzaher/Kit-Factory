@@ -11,6 +11,7 @@ import FeaturedProjects from '@/components/home/FeaturedProjects';
 import ClientsPreview from '@/components/home/ClientsPreview';
 import CallToAction from '@/components/home/CallToAction';
 import ManagementMessage from '@/components/shared/ManagementMessage';
+import Certifications from '@/components/home/Certifications';
 import FindUs from '@/components/home/FindUs';
 
 export default function HomePage() {
@@ -25,6 +26,7 @@ export default function HomePage() {
       <CoveragePreview />
       <FeaturedProjects />
       <ManagementMessage variant="light" />
+      <Certifications />
       <ClientsPreview />
       <FindUs />
       <CallToAction />

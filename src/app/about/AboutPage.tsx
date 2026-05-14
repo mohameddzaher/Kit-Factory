@@ -10,76 +10,16 @@ import {
   Building2,
   Globe,
   Handshake,
-  BadgeCheck,
-  Leaf,
-  ShieldCheck,
-  Factory,
   FileText,
 } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import SectionHeading from '@/components/ui/SectionHeading';
 import PageWrapper from '@/components/layout/PageWrapper';
 import ManagementMessage from '@/components/shared/ManagementMessage';
+import { certifications, certTones } from '@/data/certifications';
 import { useLocale } from '@/lib/i18n/LocaleProvider';
 
 const valueIcons = [Target, Compass, Award, Handshake] as const;
-
-const certifications = [
-  {
-    key: 'iso9001' as const,
-    icon: BadgeCheck,
-    file: '/certificates/ISO%209001%20-%20KIT%20FACTORY%20COMPANY.pdf',
-    tone: 'blue' as const,
-  },
-  {
-    key: 'iso14001' as const,
-    icon: Leaf,
-    file: '/certificates/ISO%2014001%20-%20KIT%20FACTORY%20COMPANY.pdf',
-    tone: 'green' as const,
-  },
-  {
-    key: 'iso45001' as const,
-    icon: ShieldCheck,
-    file: '/certificates/ISO%2045001%20-%20KIT%20FACTORY%20COMPANY.pdf',
-    tone: 'red' as const,
-  },
-  {
-    key: 'gmp' as const,
-    icon: Factory,
-    file: '/certificates/GMP%20-%20KIT%20FACTORY%20COMPANY.pdf',
-    tone: 'magenta' as const,
-  },
-];
-
-const certTones: Record<
-  'blue' | 'green' | 'red' | 'magenta',
-  { text: string; bg: string; border: string; ring: string }
-> = {
-  blue: {
-    text: 'text-kf-blue',
-    bg: 'bg-kf-blue/10',
-    border: 'border-kf-blue/30',
-    ring: 'hover:border-kf-blue/60',
-  },
-  green: {
-    text: 'text-kf-green',
-    bg: 'bg-kf-green/10',
-    border: 'border-kf-green/30',
-    ring: 'hover:border-kf-green/60',
-  },
-  red: {
-    text: 'text-kf-red',
-    bg: 'bg-kf-red/10',
-    border: 'border-kf-red/30',
-    ring: 'hover:border-kf-red/60',
-  },
-  magenta: {
-    text: 'text-kf-magenta',
-    bg: 'bg-kf-magenta/10',
-    border: 'border-kf-magenta/30',
-    ring: 'hover:border-kf-magenta/60',
-  },
-};
 
 const palette = [
   { text: 'text-kf-blue', bg: 'bg-kf-blue/10', border: 'border-kf-blue/30', ring: 'hover:border-kf-blue/40' },
@@ -336,7 +276,7 @@ export default function AboutPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-40px' }}
                   transition={{ duration: 0.55, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
-                  className={`group flex flex-col rounded-xl border border-brand-charcoal/[0.06] bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg ${tone.ring}`}
+                  className={`group flex flex-col rounded-xl border border-brand-charcoal/[0.06] bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg ${tone.ringLight}`}
                 >
                   <div
                     className={`mb-4 flex h-12 w-12 items-center justify-center rounded-lg ${tone.bg}`}
