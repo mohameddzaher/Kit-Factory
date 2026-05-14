@@ -1,13 +1,15 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import SafeImage from '@/components/ui/SafeImage';
 import Link from 'next/link';
-import { ArrowLeft, Calendar, Tag, Users, ExternalLink } from 'lucide-react';
+import { ArrowLeft, Calendar, Tag, Users } from 'lucide-react';
 import Container from '@/components/ui/Container';
 import Button from '@/components/ui/Button';
 import PageWrapper from '@/components/layout/PageWrapper';
 import CallToAction from '@/components/home/CallToAction';
+import Lightbox from '@/components/ui/Lightbox';
 import { Project } from '@/data/projects';
 import { useLocale } from '@/lib/i18n/LocaleProvider';
 
@@ -18,6 +20,7 @@ export default function ProjectDetail({ project }: { project: Project }) {
   const description = local?.description ?? project.description;
   const category =
     local?.category ?? t.projects.categories[project.category] ?? project.category;
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   return (
     <PageWrapper>
@@ -66,41 +69,38 @@ export default function ProjectDetail({ project }: { project: Project }) {
                   {project.scope.join(' · ')}
                 </span>
               </div>
-              {project.driveUrl && (
-                <a
-                  href={project.driveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-kf-blue transition-colors hover:text-kf-blue/80"
-                >
-                  <ExternalLink className="h-3 w-3" />
-                  {dir === 'rtl' ? 'كل الصور والفيديوهات' : 'Full media archive'}
-                </a>
-              )}
             </div>
           </motion.div>
 
-          {/* Image gallery */}
+          {/* Image gallery — click any image to open the lightbox */}
           <div className="grid gap-4 md:grid-cols-2">
             {project.images.map((image, i) => (
-              <motion.div
+              <motion.button
                 key={image}
+                type="button"
+                onClick={() => setLightboxIndex(i)}
                 initial={{ opacity: 0, y: 22 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-80px' }}
-                transition={{ duration: 0.7, delay: Math.min(i, 5) * 0.06, ease: [0.16, 1, 0.3, 1] }}
-                className={`relative overflow-hidden rounded-xl border border-white/[0.06] bg-white/[0.02] ${
+                transition={{
+                  duration: 0.7,
+                  delay: Math.min(i, 5) * 0.06,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className={`group relative cursor-zoom-in overflow-hidden rounded-xl border border-white/[0.06] bg-white/[0.02] transition-all duration-300 hover:border-kf-blue/40 ${
                   i === 0 ? 'aspect-[16/9] md:col-span-2' : 'aspect-[4/3]'
                 }`}
+                aria-label={`Open image ${i + 1} of ${project.images.length}`}
               >
                 <SafeImage
                   src={image}
                   alt={`${title} — ${i + 1}`}
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
                   sizes={i === 0 ? '100vw' : '50vw'}
                 />
-              </motion.div>
+                <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/15" />
+              </motion.button>
             ))}
           </div>
 
@@ -136,6 +136,14 @@ export default function ProjectDetail({ project }: { project: Project }) {
           </div>
         </Container>
       </section>
+
+      <Lightbox
+        images={project.images}
+        index={lightboxIndex}
+        onClose={() => setLightboxIndex(null)}
+        onIndexChange={setLightboxIndex}
+        alt={(i) => `${title} — ${i + 1}`}
+      />
 
       <CallToAction />
     </PageWrapper>
