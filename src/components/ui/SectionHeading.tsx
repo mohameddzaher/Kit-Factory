@@ -27,7 +27,7 @@ export default function SectionHeading({
       className={cn(
         'mb-10 md:mb-14',
         align === 'center' && 'text-center',
-        align === 'left' && 'text-left'
+        align === 'left' && 'text-start'
       )}
     >
       {label && (
@@ -46,7 +46,8 @@ export default function SectionHeading({
       {description && (
         <p
           className={cn(
-            'mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-justify',
+            'mx-auto mt-3 max-w-2xl text-sm leading-relaxed',
+            align === 'center' ? 'text-center' : 'text-start',
             dark ? 'text-brand-muted' : 'text-brand-charcoal/60',
             align === 'left' && 'mx-0'
           )}

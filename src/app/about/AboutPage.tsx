@@ -9,7 +9,7 @@ import {
   Users,
   Building2,
   Globe,
-  Handshake,
+  Handshake, 
   FileText,
 } from 'lucide-react';
 import Container from '@/components/ui/Container';

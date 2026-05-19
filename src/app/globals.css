@@ -13,8 +13,12 @@
     @apply bg-brand-charcoal text-brand-cream overflow-x-hidden;
   }
 
-  html[dir='rtl'] body {
-    font-family: var(--font-cairo), system-ui, sans-serif;
+  /* Dubai everywhere — form controls don't inherit font-family by default. */
+  input,
+  textarea,
+  select,
+  button {
+    font-family: inherit;
   }
 
   ::selection {

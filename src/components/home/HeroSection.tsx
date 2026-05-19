@@ -166,10 +166,9 @@ export default function HeroSection() {
             <div className="overflow-hidden">
               <motion.h1
                 variants={lineVariants}
-                className="font-display text-[clamp(2.5rem,8vw,6.5rem)] font-extrabold leading-[0.92] tracking-tight text-brand-cream"
+                className="font-display text-[clamp(2.5rem,8vw,6.5rem)] font-bold leading-[0.92] tracking-tight text-brand-cream"
               >
-                <span className="gradient-text-full">KIT</span>{' '}
-                <span className="text-brand-cream">Factory</span>
+                KIT Factory
               </motion.h1>
             </div>
 

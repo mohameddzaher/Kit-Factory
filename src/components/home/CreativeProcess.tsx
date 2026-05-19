@@ -93,7 +93,7 @@ export default function CreativeProcess() {
                   <div
                     className={cn(
                       'hidden w-1/2 md:block',
-                      isLeft ? 'pr-16 text-right' : 'ml-auto pl-16 text-left'
+                      isLeft ? 'pe-16 text-end' : 'ms-auto ps-16 text-start'
                     )}
                   >
                     <span className={cn('text-xs font-semibold uppercase tracking-wider', colorCls.split(' ')[0])}>

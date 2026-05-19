@@ -1,26 +1,20 @@
 import type { Metadata } from 'next';
-import { Inter, Space_Grotesk, Cairo } from 'next/font/google';
+import localFont from 'next/font/local';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { LocaleProvider } from '@/lib/i18n/LocaleProvider';
 import { SITE_CONFIG } from '@/lib/constants';
 import './globals.css';
 
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  variable: '--font-space-grotesk',
-  display: 'swap',
-});
-
-const cairo = Cairo({
-  subsets: ['arabic', 'latin'],
-  variable: '--font-cairo',
+// Dubai — a single multilingual typeface (Latin + Arabic) used site-wide.
+const dubai = localFont({
+  src: [
+    { path: '../../public/fonts/Dubai-Light.woff2', weight: '300', style: 'normal' },
+    { path: '../../public/fonts/Dubai-Regular.woff2', weight: '400', style: 'normal' },
+    { path: '../../public/fonts/Dubai-Medium.woff2', weight: '500', style: 'normal' },
+    { path: '../../public/fonts/Dubai-Bold.woff2', weight: '700', style: 'normal' },
+  ],
+  variable: '--font-dubai',
   display: 'swap',
 });
 
@@ -127,7 +121,7 @@ export default function RootLayout({
     <html
       lang="en"
       dir="ltr"
-      className={`${inter.variable} ${spaceGrotesk.variable} ${cairo.variable}`}
+      className={dubai.variable}
     >
       <head>
         <script

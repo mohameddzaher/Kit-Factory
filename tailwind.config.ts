@@ -30,9 +30,9 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ['var(--font-inter)', 'var(--font-cairo)', 'system-ui', 'sans-serif'],
-        display: ['var(--font-space-grotesk)', 'var(--font-cairo)', 'system-ui', 'sans-serif'],
-        arabic: ['var(--font-cairo)', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-dubai)', 'system-ui', 'sans-serif'],
+        display: ['var(--font-dubai)', 'system-ui', 'sans-serif'],
+        arabic: ['var(--font-dubai)', 'system-ui', 'sans-serif'],
       },
       fontSize: {
         '2xs': ['0.65rem', { lineHeight: '1rem' }],
